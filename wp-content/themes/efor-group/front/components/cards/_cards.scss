@@ -1,0 +1,85 @@
+@use "front/config/sass" as *;
+@use "front/abstract/grid-system/mixins" as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+
+  • The component
+*/
+
+/*
+  • The component
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.card {
+  // card item
+  &__img {
+    position: relative;
+    margin-bottom: rem(24);
+
+    .ratio-block {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .button {
+      position: absolute;
+      white-space: nowrap;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.5s, opacity 0.5s;
+      cursor: pointer;
+    }
+  }
+
+  &:hover {
+    // on card hover :
+    .card__img .button {
+      // button visible
+      visibility: visible;
+      opacity: 1;
+      transition: visibility 0.5s, opacity 0.5s;
+    }
+
+    .card__text .card__desc {
+      // desc visible 100%
+      color: get-color("black-graphite");
+      transition: color 0.5s;
+    }
+  }
+
+  &__text {
+    margin-top: rem(14);
+    color: initial;
+    text-decoration: initial;
+  }
+
+  &__date {
+    color: get-color("gray-40");
+  }
+
+  &__desc {
+    color: get-color("gray-40");
+    transition: color 0.5s;
+    margin-top: rem(14);
+  }
+}
+
+@include between("medium", "large") {
+  .card {
+    .tag {
+      font-size: rem(11);
+    }
+  }
+}
+
+@include down("medium") {
+  .card {
+    flex: 0 0 auto;
+  }
+}

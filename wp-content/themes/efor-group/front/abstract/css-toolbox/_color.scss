@@ -1,0 +1,17 @@
+@use 'front/config/sass' as *;
+
+@each $-name, $-value in $color-palette {
+  .c-#{$-name} { color: $-value !important; }
+}
+
+@each $-name, $-value in $color-palette {
+  .hover\:c-#{$-name}:hover { color: $-value !important; }
+}
+
+@each $-name, $-value in $color-palette {
+  .bg-#{$-name} { background-color: $-value !important; }
+}
+
+@each $-name, $-value in $color-palette {
+  .hover\:bg-#{$-name}:hover { background-color: $-value !important; }
+}

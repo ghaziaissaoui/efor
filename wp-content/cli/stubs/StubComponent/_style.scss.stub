@@ -1,0 +1,22 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.%ComponentNameDashed% {
+}

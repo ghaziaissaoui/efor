@@ -1,0 +1,38 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.img-landscape-btn-component {
+  &__container {
+    position: relative;
+    margin: 0 -10px;
+
+    a {
+      z-index: 1;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    img {
+      border-radius: rem(60) rem(10) rem(10) rem(10);
+    }
+  }
+}

@@ -1,0 +1,20 @@
+@use 'node_modules/normalize.css/normalize.css';
+
+@use 'front/abstract/css-root/css-root';
+@use 'front/abstract/css-toolbox/css-toolbox';
+@use 'front/abstract/css-vh-fix/css-vh-fix';
+@use 'front/abstract/grid-system/grid-system';
+@use 'front/abstract/bodycopy/bodycopy';
+@use 'front/abstract/rich-text/rich-text';
+
+@use 'front/_generated-indexes/_for-app-components.scss';
+@use 'front/_generated-indexes/_for-front-components.scss';
+@use 'front/_generated-indexes/_for-front-routes.scss';
+
+// If you choose to exclude a component's scss from the generated index,
+// you have to import it manually:
+// @use 'front/components/my-component/my-component';
+
+// If you choose to exclude a route's scss from the generated index,
+// you have to import it manually:
+// @use 'front/routes/some-route/some-route';

@@ -1,0 +1,62 @@
+@use 'sass:list';
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/variables' as gs;
+@use 'front/abstract/grid-system/functions' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Variable(s)
+  • Prep.
+  • Simple toggle classes
+*/
+
+/*
+  • Variable(s)
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+$-loop-iterations: 5;
+$-loop-additions: ();
+
+/*
+  • Prep.
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+$-loop: (0);
+
+@for $-i from 1 to ($-loop-iterations + 1) {
+  $-loop: list.append($-loop, $-i, $separator: comma);
+}
+
+@each $-i in $-loop-additions {
+  @if list.index($-loop, $-i) == null {
+    $-loop: list.append($-loop, $-i, $separator: comma);
+  }
+}
+
+@debug $-loop;
+
+/*
+  • Simple toggle classes
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@each $-i in $-loop {
+  .u-order-#{$-i} {
+    order: $-i;
+  }
+}
+
+@each $-slug, $-obj in gs.$breakpoints {
+  $-prefix: get-breakpoint-prefix($-obj);
+  $-value: get-breakpoint-value($-obj);
+
+  @include up($-value) {
+    @each $-i in $-loop {
+      .#{$-prefix}u-order-#{$-i} { order: $-i; }
+    }
+  }
+}

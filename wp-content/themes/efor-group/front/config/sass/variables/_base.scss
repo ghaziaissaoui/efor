@@ -1,0 +1,8 @@
+$ref-space: 8;
+$header-height-mobile: var(--header-height-mobile);
+$header-height-desktop: var(--header-height-desktop);
+
+:root {
+  --header-height-desktop: 126px;
+  --header-height-mobile: 110px;
+}

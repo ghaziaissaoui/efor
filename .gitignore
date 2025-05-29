@@ -1,0 +1,35 @@
+# ignore everything in the root except the "wp-content" directory.
+/*
+/*/
+# if we include a subflder we need to include and exclude parent !
+!/wp-content/
+/wp-content/*
+
+!/wp-content/themes/
+!/wp-content/plugins/
+!/wp-content/mu-plugins/
+!/wp-content/cli/
+wp-content/plugins/akismet/
+wp-content/plugins/hello.php
+wp-content/themes/twenty*/
+wp-content/plugins/vostrapress
+wp-content/plugins/twicpics
+wp-content/plugins/*-local
+
+!/README.md
+!/.gitignore
+!/.gitmodules
+.DS_Store
+wp-content/plugins/vostrapress
+wp-content/plugins/twicpics
+
+# ignore log files and databases
+*.log
+
+#.idea
+.idea/
+
+# sonar scanner
+.scannerwork/
+
+wp-content/themes/efor-group/front/config/dev-server-port

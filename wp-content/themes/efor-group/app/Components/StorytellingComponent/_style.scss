@@ -1,0 +1,59 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+  • Medium Breakpoint Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+.storytelling-component {
+  .storytelling__title {
+    margin-bottom: rem(24);
+  }
+
+  .storytelling__text {
+    display: flex;
+    flex-direction: column;
+    gap: rem(24);
+    font-size: rem(18);
+  }
+
+  ul {
+    list-style: none;
+    padding-left: rem(20);
+
+    .list-marker {
+      padding-right: rem(12);
+
+      div {
+        vertical-align: text-top;
+      }
+    }
+  }
+}
+
+@include up('large') {
+  .storytelling-component {
+    .storytelling__title {
+      margin-bottom: rem(80);
+    }
+
+    .storytelling__text {
+      gap: rem(40);
+      font-size: rem(28);
+
+    }
+  }
+}

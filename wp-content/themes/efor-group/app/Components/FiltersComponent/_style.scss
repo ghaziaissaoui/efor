@@ -1,0 +1,73 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.filters-component {
+  .tags {
+    p {
+      margin-bottom: rem(20);
+    }
+
+    & > *:not(:last-child):not(:first-child) {
+      margin-right: rem(20);
+    }
+
+    .tag {
+      background-color: get-color('gray-30');
+    }
+
+    .tag.active {
+      background-color: get-color('gray-40');
+      color: get-color('white');
+    }
+  }
+
+  form {
+    position: relative;
+
+    .wrapper {
+      background: get-color('gray-30');
+      width: 100%;
+      border-radius: 1000px;
+      padding: 0 rem(30);
+
+      input {
+        background: none;
+      }
+    }
+  }
+
+  form button[type=submit] {
+    position: absolute;
+    top: rem(18);
+    right: rem(30);
+    z-index: 1;
+  }
+}
+
+
+@include up('large') {
+  .filters-component {
+    .tags {
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

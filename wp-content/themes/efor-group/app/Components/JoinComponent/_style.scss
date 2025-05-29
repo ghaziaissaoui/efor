@@ -1,0 +1,365 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+@use 'front/abstract/css-toolbox/ratios' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+  • Medium Breakpoint Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.join-component {
+  display: block;
+}
+
+.join {
+  &-scroll {
+    &__container {
+      padding-top: rem(50);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-wrap: nowrap;
+    }
+  }
+
+  &-slide {
+    &-left {
+      .header {
+        margin-bottom: rem(24);
+
+        &__number {
+          font-size: rem(102);
+          line-height: 90%;
+          margin-right: rem(12);
+        }
+      }
+    }
+
+    &-right {
+      .img__left {
+        img {
+          border-radius: rem(60) rem(10) rem(10) rem(10);
+        }
+      }
+
+      .img__right {
+
+        video,
+        img {
+          border-radius: rem(10) rem(10) rem(60) rem(10);
+        }
+
+        .video-preview,
+        .youtube-preview-loop {
+          &__insertion-point {
+            border-radius: rem(10) rem(10) rem(60) rem(10);
+          }
+
+          &__cover-image {
+            border-radius: rem(10) rem(10) rem(60) rem(10);
+
+            &::after {
+              border-radius: rem(10) rem(10) rem(60) rem(10);
+            }
+          }
+        }
+      }
+    }
+
+    // First composition
+
+    // Second composition
+    &.second-composition {
+      .join-slide-left {
+        flex-basis: initial;
+      }
+
+      .join-slide-right {
+        flex-basis: initial;
+
+        .img__right {
+          margin-top: rem(24);
+
+          img {
+            border-radius: rem(10) rem(10) rem(60) rem(10);
+          }
+        }
+
+        .img__left {
+          img {
+            border-radius: rem(10) rem(60) rem(10) rem(10);
+          }
+        }
+      }
+    }
+
+    // Third composition
+    &.third-composition {
+      img {
+        border-radius: rem(10) rem(10) rem(10) rem(60);
+      }
+
+      .join-slide-right {
+
+        .video-preview,
+        .youtube-preview-loop {
+
+          video,
+          &__insertion-point {
+            border-radius: rem(10) rem(10) rem(10) rem(60);
+          }
+
+          .youtube-full-video__insertion-point {
+            border-radius: rem(10) rem(10) rem(10) rem(60);
+          }
+
+          &__cover-image {
+            border-radius: rem(10) rem(10) rem(10) rem(60);
+
+            &::after {
+              border-radius: rem(10) rem(10) rem(10) rem(60);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .video-component {
+    position: relative;
+
+    .u-hidden {
+      display: block !important;
+      opacity: 0;
+    }
+  }
+
+  .rgpd-notice {
+    z-index: 999;
+    position: absolute;
+
+    @extend .ratio-block;
+    @extend .ratio-block--9\/16;
+    border-radius: rem(10) rem(10) rem(60) rem(10);
+
+    &__container {
+      @extend .ratio-block__content;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+}
+
+@include down(small) {
+  .join {
+    &-slide {
+      justify-content: space-between;
+
+      &-left {
+        .header {
+          &__value {
+            font-size: rem(20);
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+}
+
+/*
+  • Medium Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+@include down(medium) {
+  .join {
+    &-scroll {
+      &__container {
+        width: 600%;
+        flex-wrap: nowrap;
+      }
+    }
+
+    &-slide {
+      width: 200%;
+      height: 100%;
+      padding-left: rem(20);
+      padding-right: rem(20);
+
+      &-left,
+      &-right {
+        width: 50%;
+        max-width: 50%;
+      }
+
+      &-left,
+      &-right {
+        flex: initial;
+      }
+
+      &.first-composition {
+        justify-content: space-between;
+      }
+
+      &.second-composition {
+        .join-slide-right {
+          .img__left,
+          .img__right {
+            flex: initial;
+            padding: 0;
+          }
+
+          .img__right {
+            padding: 0;
+          }
+        }
+      }
+
+      &.third-composition {
+        .join-slide-right {
+          .ratio-block {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include between(medium, large) {
+  .join {
+    &-scroll {
+      &__container {
+        width: 170%;
+      }
+    }
+
+    &-slide {
+      padding-right: rem(60);
+    }
+  }
+}
+
+@include up(medium) {
+  .join {
+    &__slider {
+      margin-left: calc((100vw - var(--gs-max-width)) / 2);
+    }
+
+    &-scroll {
+      &__container {
+        padding-top: rem(110);
+        padding-bottom: 0;
+      }
+    }
+
+    &-slide {
+      flex: 0 0 100%;
+
+      &-left {
+        .header {
+          margin-bottom: rem(60);
+        }
+      }
+
+      &.second-composition {
+        .join-slide-right {
+          .img__right {
+            margin-top: 0;
+          }
+        }
+
+        .join-slide-left {
+          .header {
+            margin-bottom: 0;
+          }
+
+          margin-bottom: rem(50);
+        }
+      }
+
+      &.third-composition {
+        .join-slide-left {
+          .header {
+            margin-bottom: rem(60);
+          }
+        }
+      }
+
+      &-left {
+        .header {
+          &__number {
+            font-size: rem(200);
+            margin-right: rem(42);
+          }
+        }
+      }
+    }
+  }
+}
+
+/*
+  • Large Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include between(large, wide) {
+  .join {
+    &-slide {
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+}
+
+@include up(large) {
+  .join {
+    &-slide {
+      justify-content: space-around;
+
+      &-left {
+        .header {
+          &__value {
+            font-size: rem(36);
+          }
+        }
+      }
+
+      &.second-composition {
+
+        .join-slide-right,
+        .join-slide-left {
+          flex-basis: auto;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .join-component {
+    .join {
+      &__slider {
+        max-width: var(--gs-max-width);
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}

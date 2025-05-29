@@ -1,0 +1,3 @@
+[submodule "wp-content/mu-plugins/plugin-disable-emails"]
+	path = wp-content/mu-plugins/plugin-disable-emails
+	url = ssh://git@gitlab.cosavostra.com:8364/pluginswp/plugin-disable-emails.git

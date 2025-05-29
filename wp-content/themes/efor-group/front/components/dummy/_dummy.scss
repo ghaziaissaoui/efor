@@ -1,0 +1,88 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+  • Base Styles: --clicked state
+  • Large Breakpoint Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+$-emoji-size: 2rem;
+
+@keyframes pop-in {
+  from {
+    transform: rotate(30deg) scale(0);
+  }
+}
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.dummy {
+  flex-direction: column;
+
+  &__button {
+    overflow: visible;
+  }
+
+  &__output {
+    p:last-child {
+      background-color: get-color('secondary');
+    }
+  }
+}
+
+/*
+  • Base Styles: --clicked state
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.dummy.--clicked {
+  .dummy { // For nesting convenience
+    &__button {
+      &::after {
+        content: '👍';
+        display: flex;
+        justify-content: center;
+        width: 0;
+        position: absolute;
+        right: 0;
+        top: -0.5em;
+        font-size: $-emoji-size;
+        line-height: 1;
+        text-align: center;
+        transform: rotate(-10deg) scale(1);
+        animation: ease-out both 0.2s pop-in;
+      }
+    }
+
+    &__output {
+      p:last-child {
+        background-color: get-color('4');
+        color: get-color('white');
+      }
+    }
+  }
+}
+
+/*
+  • Large Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include up('large') {
+  .dummy {
+    flex-direction: row;
+    align-items: center;
+  }
+}

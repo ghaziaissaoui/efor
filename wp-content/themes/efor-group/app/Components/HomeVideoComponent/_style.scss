@@ -1,0 +1,41 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.home-video-component {
+  display: block;
+
+  .text {
+    bottom: rem(90);
+    left: 0;
+    width: 100%;
+  }
+
+  video {
+    border-radius: 0px 0px 0px 90px;
+  }
+
+  h1 {
+    @include down('medium') {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

@@ -1,0 +1,167 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+// Common misc syles may go here
+
+.demo-component__hey {
+  // Everything in the public/ folder should be referenced
+  // using urls relative to the public/ folder
+  background-image: url('images/gradient-mesh.webp');
+}
+
+@media (hover: hover) and (pointer: fine) and (max-width:1280px) {
+  html {
+    font-size: calc(0.5498045347928068rem + 0.3127443315089914vw);
+  }
+
+  .gs-container,
+  .gs-fluid-container {
+    min-width: 88vw !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .header-component-container {
+    max-height: rem(104) !important;
+    min-height: rem(104) !important;
+
+    .header-component--open & {
+      min-height: rem(380) !important;
+      max-height: rem(380) !important;
+    }
+
+  }
+
+  .header-component-base {
+    padding-top: 1.25rem;
+  }
+
+  .join-slide-left .header__number {
+    font-size: 9rem;
+  }
+}
+
+.main {
+  &>* {
+    margin-bottom: rem(70);
+
+    @include up(large) {
+      margin-bottom: rem(160);
+    }
+  }
+}
+
+// Image animation hover
+
+.image--scale {
+  overflow: hidden;
+
+  a {
+    overflow: hidden;
+  }
+
+  img {
+    transition: transform .5s;
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.rgpd-notice {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+// Background lines
+
+.background-lines {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: rem(795);
+  overflow: hidden;
+
+  @include up(small) {
+    height: rem(1761);
+  }
+
+  &::after {
+    content: url("data:image/svg+xml,%3Csvg width='375' height='1088' viewBox='0 0 375 1088' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath opacity='0.4' d='M1132.76 -323.776C715.248 -187.891 -193.598 202.884 -362.013 661.064' stroke='%235A6B61'/%3E%3Cpath d='M1131.89 -328.391C629.005 -171.194 -38.5432 362.002 -205.281 872.38' stroke='%23C9A778' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='5.68 5.68'/%3E%3Cpath opacity='0.4' d='M1148.47 -325.007C556.664 -125.235 38.1158 657.578 5.05017 1087.57' stroke='%235A6B61'/%3E%3C/svg%3E%0A");
+    position: absolute;
+    opacity: 0.2;
+    top: rem(145);
+    height: 100%;
+    display: block;
+    z-index: -1;
+    overflow: hidden;
+
+    @media screen and (min-width: 376px) and (max-width: 559px) {
+      left: rem(-100);
+      top: 0;
+    }
+
+    @include up(small) {
+      top: 0;
+      content: url("data:image/svg+xml,%3Csvg width='1440' height='1867' viewBox='0 0 1440 1867' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath opacity='0.6' d='M-304.15 1859.7C312.052 1662.1 1654 1092 1905.14 417.817' stroke='%23ACA9A9'/%3E%3Cpath d='M-302.892 1866.5C439.262 1638.05 1426.5 856.5 1675.5 105.378' stroke='%23C9A778' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='4.66 4.66'/%3E%3Cpath opacity='0.6' d='M-302.712 1861.52C570.759 1570.88 1340 420.5 1391.48 -213' stroke='%23ACA9A9'/%3E%3C/svg%3E%0A");
+    }
+
+    @include between(medium, wide) {
+      top: -10%;
+      right: 0;
+    }
+
+    @include up(wide) {
+      right: var(--gs-width-sidebar);
+    }
+
+    @media screen and (min-width: 1600px) {
+      right: -5%;
+    }
+  }
+}
+
+.background-lines-2 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: rem(795);
+  overflow: hidden;
+
+  @include up(small) {
+    height: rem(1860);
+  }
+
+  &::after {
+    content: url("data:image/svg+xml,%3Csvg width='375' height='1088' viewBox='0 0 375 1088' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath opacity='0.4' d='M1132.76 -323.776C715.248 -187.891 -193.598 202.884 -362.013 661.064' stroke='%235A6B61'/%3E%3Cpath d='M1131.89 -328.391C629.005 -171.194 -38.5432 362.002 -205.281 872.38' stroke='%23C9A778' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='5.68 5.68'/%3E%3Cpath opacity='0.4' d='M1148.47 -325.007C556.664 -125.235 38.1158 657.578 5.05017 1087.57' stroke='%235A6B61'/%3E%3C/svg%3E%0A");
+    position: absolute;
+    opacity: 0.2;
+    top: rem(145);
+    height: 100%;
+    display: block;
+    z-index: -1;
+    overflow: hidden;
+    left: 0;
+
+    @media screen and (min-width: 376px) and (max-width: 559px) {
+      left: rem(-100);
+      top: 0;
+    }
+
+    @include up(small) {
+      top: rem(76);
+      content: url("data:image/svg+xml,%3Csvg width='1440' height='1861' viewBox='0 0 1440 1861' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath opacity='0.4' d='M2297.56 -677.646C1546.76 -433.291 -87.5704 269.422 -390.423 1093.34' stroke='%235A6B61'/%3E%3Cpath d='M2295.99 -685.945C1391.68 -403.264 191.257 555.557 -108.579 1473.35' stroke='%23C9A778' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='5.68 5.68'/%3E%3Cpath opacity='0.4' d='M2325.8 -679.86C1261.59 -320.618 329.109 1087.08 269.649 1860.3' stroke='%235A6B61'/%3E%3C/svg%3E%0A");
+    }
+  }
+}

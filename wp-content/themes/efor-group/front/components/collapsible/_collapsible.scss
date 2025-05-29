@@ -1,0 +1,68 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Variable(s)
+  • Component Base
+  • State: Transitioning
+  • State: Expanded
+*/
+
+/*
+  • Variable(s)
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+$-transition-duration: 0.3s;
+
+/*
+  • Component Base
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.collapsible {
+  overflow: hidden;
+  box-sizing: border-box;
+  height: 0;
+  visibility: hidden;
+  transition: visibility 0s $-transition-duration, height $-transition-duration 0s;
+  will-change: visibility, height;
+
+  &-item {
+    svg {
+      transform: rotateX(180deg);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    &.--contract svg {
+      transform: rotateX(0deg);
+    }
+  }
+}
+
+.collapsible:focus {
+  outline: 0;
+}
+
+/*
+  • State: Transitioning
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.collapsible--transitioning {
+  visibility: visible;
+  transition: visibility 0s 0s, height $-transition-duration 0s;
+}
+
+/*
+  • State: Expanded
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.collapsible--expanded {
+  height: auto;
+  visibility: visible;
+  transition: visibility 0s 0s, height $-transition-duration 0s;
+}

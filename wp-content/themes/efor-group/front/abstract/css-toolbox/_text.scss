@@ -1,0 +1,165 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:string';
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/functions' as functions;
+@use 'front/abstract/grid-system/mixins' as mixins;
+@use 'front/abstract/grid-system/variables' as variables;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Rendering
+  • Style
+  • Misc.
+  • Fonts
+  • Alignments
+  • Weights
+*/
+
+/*
+  • Rendering
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.t-antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.t-sub-antialiased {
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: auto;
+}
+
+/*
+  • Style
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.t-normal {
+  font-style: normal;
+}
+
+.t-italic {
+  font-style: italic;
+}
+
+/*
+  • Misc.
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.t-underline {
+  text-decoration: underline;
+}
+
+.t-none {
+  text-decoration: none;
+}
+
+.t-nowrap {
+  white-space: nowrap;
+}
+
+.t-ellipsis {
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.t-neutral-links a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/*
+  • Fonts
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@each $-font in $font-families {
+  $-font-family: string.quote(#{list.nth($-font, 1)});
+  $-font-family-lc: str-replace(' ', '-', string.to-lower-case($-font-family));
+  $-font-variants: list.nth($-font, 2);
+  $-font-stack: $-font-family;
+
+  @if map.has-key($font-stacks, $-font-family-lc) {
+    $-font-stack: map.get($font-stacks, $-font-family-lc);
+  }
+  @else if map.has-key($font-stacks, $-font-family) {
+    $-font-stack: map.get($font-stacks, $-font-family);
+  }
+
+  .t-#{$-font-family-lc} {
+    font-family: $-font-stack;
+  }
+
+  @each $variant in $-font-variants {
+    @if $variant {
+      $-font-weight: list.nth($variant, 2);
+      $-font-style: list.nth($variant, 3);
+
+      .t-#{$-font-family-lc}-#{$-font-weight}-#{$-font-style} {
+        font-family: $-font-stack;
+        font-style: $-font-style;
+        font-weight: $-font-weight;
+      }
+    }
+  }
+}
+
+/*
+  • Alignments
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+$-alignments: (left, center, right);
+
+@each $-a in $-alignments {
+  .t-align-#{$-a} {
+    text-align: $-a;
+  }
+}
+
+@each $-slug, $-obj in variables.$breakpoints {
+  $-prefix: functions.get-breakpoint-prefix($-obj);
+  $-value: functions.get-breakpoint-value($-obj);
+
+  @include mixins.up($-value) {
+    @each $-a in $-alignments {
+      .#{$-prefix}t-align-#{$-a} {
+        text-align: $-a;
+      }
+    }
+  }
+}
+
+/*
+  • Weights
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+$-weights: (100, 200, 300, 400, 500, 600, 700, 800, 900);
+
+@each $-w in $-weights {
+  .t-weight-#{$-w} {
+    font-weight: $-w;
+  }
+}
+
+@each $-slug, $-obj in variables.$breakpoints {
+  $-prefix: functions.get-breakpoint-prefix($-obj);
+  $-value: functions.get-breakpoint-value($-obj);
+
+  @include mixins.up($-value) {
+    @each $-w in $-weights {
+      .#{$-prefix}t-weight-#{$-w} {
+        font-weight: $-w;
+      }
+    }
+  }
+}

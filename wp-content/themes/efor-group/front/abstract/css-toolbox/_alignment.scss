@@ -1,0 +1,181 @@
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Mixin(s)
+  • Self alignement using margins
+  • Self alignement using flexbox
+  • Alignement of children using flexbox
+  • Self vertical alignement using inline-block
+  • Vertical alignement of children using inline-block
+*/
+
+/*
+  • Mixin(s)
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@mixin vertical-align-inside($align-base) {
+  font-size: 0 !important;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    vertical-align: $align-base;
+    width: 0;
+    height: 100%;
+  }
+
+  & > * {
+    display: inline-block !important;
+    vertical-align: $align-base !important;
+    font-size: 1rem;
+  }
+}
+
+/*
+  • Self alignement using margins
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.u-docked-left {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+.u-docked-right {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+.u-centered-on-x {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.u-docked-top {
+  margin-top: 0 !important;
+  margin-bottom: auto !important;
+}
+
+.u-docked-bottom {
+  margin-top: auto !important;
+  margin-bottom: 0 !important;
+}
+
+.u-centered-on-y {
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+}
+
+.u-centered-on-xy {
+  margin: auto !important;
+}
+
+/*
+  • Self alignement using flexbox
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.u-align-self-start {
+  align-self: flex-start !important;
+}
+
+.u-align-self-end {
+  align-self: flex-end !important;
+}
+
+.u-align-self-center {
+  align-self: center !important;
+}
+
+/*
+  • Alignement of children using flexbox
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.u-justify-content-start {
+  justify-content: flex-start !important;
+}
+
+.u-justify-content-end {
+  justify-content: flex-end !important;
+}
+
+.u-justify-content-center {
+  justify-content: center !important;
+}
+
+.u-justify-content-space-between {
+  justify-content: space-between !important;
+}
+
+.u-justify-content-space-around {
+  justify-content: space-around !important;
+}
+
+.u-align-items-start {
+  align-items: flex-start !important;
+}
+
+.u-align-items-end {
+  align-items: flex-end !important;
+}
+
+.u-align-items-baseline {
+  align-items: baseline !important;
+}
+
+.u-align-items-center {
+  align-items: center !important;
+}
+
+.u-align-items-stretch {
+  align-items: stretch !important;
+}
+
+.u-flex-center {
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/*
+  • Self vertical alignement using inline-block
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.u-va-top {
+  vertical-align: top !important;
+}
+
+.u-va-middle {
+  vertical-align: middle !important;
+}
+
+.u-va-baseline {
+  vertical-align: baseline !important;
+}
+
+.u-va-bottom {
+  vertical-align: bottom !important;
+}
+
+/*
+  • Vertical alignement of children using inline-block
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.u-va-inside-top {
+  @include vertical-align-inside(top);
+}
+
+.u-va-inside-middle {
+  @include vertical-align-inside(middle);
+}
+
+.u-va-inside-baseline {
+  @include vertical-align-inside(baseline);
+}
+
+.u-va-inside-bottom {
+  @include vertical-align-inside(bottom);
+}

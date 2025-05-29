@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="/index.scss">
+  <title>Front Modules</title>
+</head>
+<body>
+
+  <header></header>
+  <div class="wrap" role="document">
+    <main class="main" role="main">
+      <div class="demo-component u-flex u-align-items-center u-relative">
+        <div class="gs-container u-width-100% u-padding-t-5 u-padding-b-5">
+          <div class="gs-row u-align-items-center">
+            <div class="u-margin-b-3 u-v-spaced-3 @md:gs-column-5 @md:u-margin-b-0 @wd:gs-column-4 @wd:gs-push-1">
+              <h2 class="t-header-large">Titre du composant</h2>
+              <div class="bodycopy t-base-medium"><p>Texte de description lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui. Maecenas sed diam eget risus varius blandit sit amet non magna. Etiam porta sem malesuada magna mollis euismod.</p>
+              </div>
+              <button class="demo-component__toggle button t-base-medium" type="button">
+                <svg class="u-icon-24 u-icon--left"><use xlink:href="/images/icon-lib.svg#heart"/></svg>
+                <span>Go dark mode</span>
+                <span>Go light mode</span>
+              </button>
+            </div>
+            <div class="u-relative @md:gs-column-6 @md:gs-push-1 @wd:gs-column-5">
+              <img width="954" height="1000" src="/images/demo-component-image.jpg" class="u-img" alt="Miyamete" loading="lazy">
+              <span class="demo-component__hey u-absolute t-header-large t-luthon">Hey !</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-component u-flex u-align-items-center u-relative">
+        <div class="gs-container u-width-100% u-padding-t-5 u-padding-b-5">
+          <div class="gs-row u-align-items-center">
+            <div class="u-margin-b-3 u-v-spaced-3 @md:gs-column-5 @md:u-margin-b-0 @wd:gs-column-4 @wd:gs-push-1">
+              <h2 class="t-header-large">Titre par défaut</h2>
+              <div class="bodycopy t-base-medium"><p>Texte de description lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui. Maecenas sed diam eget risus varius blandit sit amet non magna. Etiam porta sem malesuada magna mollis euismod.</p>
+              </div>
+              <button class="demo-component__toggle button t-base-medium" type="button">
+                <svg class="u-icon-24 u-icon--left"><use xlink:href="/images/icon-lib.svg#heart"/></svg>
+                <span>Go dark mode</span>
+                <span>Go light mode</span>
+              </button>
+            </div>
+            <div class="u-relative @md:gs-column-6 @md:gs-push-1 @wd:gs-column-5">
+              <img width="954" height="1000" src="/images/demo-component-image.jpg" class="u-img" alt="Miyamete" loading="lazy">
+              <span class="demo-component__hey u-absolute t-header-large t-luthon">Hey !</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="gs-container u-margin-b-4 t-header-large">Grid system example</h2>
+
+      <div class="gs-container u-margin-b-5">
+        <div class="sample u-cross-centered-row u-padding-2 bg-green"><span>.gs-container</span></div>
+      </div>
+      <div class="gs-fluid-container u-margin-b-5">
+        <div class="sample u-cross-centered-row u-padding-2 bg-green">.gs-fluid-container</div>
+      </div>
+      <div class="gs-flush-container u-margin-b-5">
+        <div class="sample u-cross-centered-row u-padding-2 bg-green">.gs-flush-container</div>
+      </div>
+      <div class="gs-full-container u-margin-b-5">
+        <div class="sample u-cross-centered-row u-padding-2 bg-green">.gs-full-container</div>
+      </div>
+      <div class="gs-swipable-container u-margin-b-5 u-scrollable-on-x u-no-scrollbar u-flex u-h-spaced-5">
+        <div class="sample gs-flush-column-3 u-cross-centered-row u-padding-2 bg-green">.gs-swipable-container</div>
+        <div class="sample gs-flush-column-3 u-cross-centered-row u-padding-2 bg-green">.gs-swipable-container</div>
+        <div class="sample gs-flush-column-3 u-cross-centered-row u-padding-2 bg-green">.gs-swipable-container</div>
+        <div class="sample gs-flush-column-3 u-cross-centered-row u-padding-2 bg-green">.gs-swipable-container</div>
+        <div class="sample gs-flush-column-3 u-cross-centered-row u-padding-2 bg-green">.gs-swipable-container</div>
+        <div class="sample gs-flush-column-3 u-cross-centered-row u-padding-2 bg-green">.gs-swipable-container</div>
+        <div class="sample gs-flush-column-3 u-cross-centered-row u-padding-2 bg-green">.gs-swipable-container</div>
+        <div class="sample gs-flush-column-3 u-cross-centered-row u-padding-2 bg-green">.gs-swipable-container</div>
+        <div class="sample gs-flush-column-3 u-cross-centered-row u-padding-2 bg-green">.gs-swipable-container</div>
+        <div class="sample gs-flush-column-3 u-cross-centered-row u-padding-2 bg-green">.gs-swipable-container</div>
+      </div>
+      <hr class="u-margin-t-10 u-margin-b-10">
+      <div class="gs-container u-margin-b-10">
+        <h2 class="u-margin-b-2 t-header-large">Unique Dummy Component</h2>
+
+        <div class="unique-dummy u-padding-3 u-v-spaced-3 u-margin-b-3 bg-green @lg:u-padding-5 @lg:u-margin-b-5">
+          <div class="bodycopy">
+            <p>I'm unique! There can be only 1 instance of me per page.</p>
+            <p>See my .js file init function</p>
+          </div>
+          <div class="u-flex u-h-spaced-3">
+            <button type="button" class="unique-dummy__button button u-relative">
+              <span>Click me!</span>
+            </button>
+            <button type="button" class="unique-dummy__reset func-button t-link-fx-wrapper">
+              <span>Reset</span>
+            </button>
+          </div>
+        </div>
+
+        <h2 class="u-margin-b-2 t-header-large">Dummy Components</h2>
+
+        <div class="dummy u-flex u-padding-3 u-border-1 u-margin-b-3 c-gray-30 @lg:u-padding-5 @lg:u-margin-b-5">
+          <h3 class="t-header-medium u-margin-b-3 c-black @lg:u-margin-b-0">Dummy Component&nbsp;1</h3>
+          <div class="u-flex u-h-spaced-3 u-margin-b-3 c-black @lg:u-margin-b-0 @lg:u-margin-l-5 @lg:u-margin-r-5">
+            <button type="button" class="dummy__button button u-relative">
+              <span>Click me!</span>
+            </button>
+            <button type="button" class="dummy__reset func-button t-link-fx-wrapper">
+              <span>Reset</span>
+            </button>
+          </div>
+          <div class="dummy__output bodycopy t-base-medium c-black">
+            <p>I have been clicked <span class="dummy__count u-padding-1 bg-primary">0</span> <span data-singular="time"
+              data-plural="times">time</span>
+            </p>
+            <p class="u-padding-1 u-padding-l-2">I'm changing color when clicked at least once</p>
+          </div>
+        </div>
+
+        <div class="dummy u-flex u-padding-3 u-border-1 u-margin-b-3 c-gray-30 @lg:u-padding-5 @lg:u-margin-b-5">
+          <h3 class="t-header-medium u-margin-b-3 c-black @lg:u-margin-b-0">Dummy Component&nbsp;2</h3>
+          <div class="u-flex u-h-spaced-3 u-margin-b-3 c-black @lg:u-margin-b-0 @lg:u-margin-l-5 @lg:u-margin-r-5">
+            <button type="button" class="dummy__button button u-relative">
+              <span>Click me!</span>
+            </button>
+            <button type="button" class="dummy__reset func-button t-link-fx-wrapper">
+              <span>Reset</span>
+            </button>
+          </div>
+          <div class="dummy__output bodycopy t-base-medium c-black">
+            <p>I have been clicked <span class="dummy__count u-padding-1 bg-primary">0</span> <span data-singular="time"
+              data-plural="times">time</span>
+            </p>
+            <p class="u-padding-1 u-padding-l-2">I'm changing color when clicked at least once</p>
+          </div>
+        </div>
+
+        <div class="u-flex u-padding-3 u-border-1 u-margin-b-3 c-gray-30 @lg:u-padding-5 @lg:u-margin-b-5">
+          <h3 class="t-header-medium u-margin-b-3 c-black @lg:u-margin-b-0">Ajax request </h3>
+          <div class="u-flex u-h-spaced-3 u-margin-b-3 c-black @lg:u-margin-b-0 @lg:u-margin-l-5 @lg:u-margin-r-5">
+            <click-fetch
+            class="u-padding-2 bg-yellow"
+            data-action="demo-request"
+            data-loading-label="custom waiting message"
+            data-params="{&quot;message&quot;:&quot;Request executed&quot;}">
+              <button type="button" class="button">
+                <span>Demo ajax request w/ partial</span>
+              </button>
+            </click-fetch>
+          </div>
+          <div class="dummy__output bodycopy t-base-medium c-black">
+            <p>PHP logic available in <code>app\Ajax\DemoRequest.php</code></p>
+            <p class="u-padding-1 u-padding-l-2 ajax-output bg-black c-white">Output</p>
+          </div>
+        </div>
+
+        <div class="u-flex u-padding-3 u-border-1 u-margin-b-3 c-gray-30 @lg:u-padding-5 @lg:u-margin-b-5">
+          <h3 class="t-header-medium u-margin-b-3 c-black @lg:u-margin-b-0">Ajax request </h3>
+          <div class="u-flex u-h-spaced-3 u-margin-b-3 c-black @lg:u-margin-b-0 @lg:u-margin-l-5 @lg:u-margin-r-5">
+            <click-fetch
+            class=""
+            data-action="demo-request-error"
+            data-loading-label=""
+            data-params="[]">
+              <button type="button" class="button hover:bg-yellow hover:c-black">
+                <span>Demo ajax request w/ error</span>
+              </button>
+            </click-fetch>
+          </div>
+          <div class="dummy__output bodycopy t-base-medium c-black">
+            <p>PHP logic available in <code>app\Ajax\DemoRequest.php</code></p>
+            <p class="u-padding-1 u-padding-l-2 ajax-output bg-black c-white">Output</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="site-footer"></footer>
+
+<script type="module" src="/index.js"></script>
+</body>
+</html>

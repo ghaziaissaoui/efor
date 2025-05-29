@@ -1,0 +1,70 @@
+@use 'front/config/sass' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Variable(s)
+  • Global Styles
+  • Inside of: Button
+*/
+
+/*
+  • Variable(s)
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+$-icon-sizes: (16, 24, 30, 32, 34, 40, 50, 56, 64, 72, 85);
+
+/*
+  • Global Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+%u-icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.u-icon {
+  @extend %u-icon;
+}
+
+@each $-size in $-icon-sizes {
+  .u-icon-#{$-size} {
+    @extend %u-icon;
+
+    width: rem($-size);
+    height: rem($-size);
+  }
+}
+
+.u-icon--left {
+  margin-right: rem(8);
+}
+
+.u-icon--right {
+  margin-left: rem(8);
+}
+
+.u-icon--no-fill {
+  fill: none;
+
+  svg {
+    fill: none;
+  }
+}
+
+/*
+  • Inside of: Button
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.button {
+  .u-icon--left {
+    margin-left: rem(-12);
+  }
+
+  .u-icon--right {
+    margin-right: rem(-12);
+  }
+}

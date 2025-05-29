@@ -1,0 +1,54 @@
+@use 'sass:map';
+@use 'sass:math';
+@use './color';
+
+$-system-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
+// These will be used in @font-face declarations
+// and to create font utility classes.
+// If the font file is null, the @font-face declaration
+// is skipped.
+$families: (
+  'Inter': (
+    ( null 400 normal ),
+    ( null 400 italic ),
+    ( null 700 normal ),
+    ( null 700 italic )
+  ),
+  'Luthon': (
+    ( 'Luthon-Southard-Script' 400 normal ),
+    null
+  ),
+  'General-Sans': (
+      ( 'General-Sans-Regular' 400 normal ),
+      ( 'General-Sans-Medium' 500 normal ),
+  ),
+  'Sometimes-Times': (
+      ( 'Sometimes-Times-Italic' 400 normal ),
+  ),
+);
+
+$stacks: (
+  'Inter': ( 'Inter', sans-serif ),
+  'Luthon': ( 'Luthon', sans-serif ),
+  'General-Sans': ( 'General-Sans', sans-serif ),
+  'Sometimes-Times': ( 'Sometimes-Times', serif ),
+  'system': $-system-stack,
+  'sans-serif': ( sans-serif ),
+  'serif': ( serif ),
+  'monospace': ( monospace )
+);
+
+$root-size: 100%; // 16px on all major browsers
+$default-color: map.get(color.$palette, 'black-graphite');
+$default-stack: map.get($stacks, 'General-Sans');
+$default-base: 16;
+$default-size: math.div(16, $default-base) * 1rem;
+$default-style: normal;
+$default-weight: normal;
+$default-line-height: 160%;
+$default-letter-spacing: 0;
+$default-text-decoration: none;
+$default-text-transform: none;
+
+$modular-scale-ratio: '3@5';

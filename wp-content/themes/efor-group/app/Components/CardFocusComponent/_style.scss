@@ -1,0 +1,44 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+  • Medium Breakpoint Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.card-focus-component {
+  padding: rem(44) rem(30);
+  border-radius: rem(10) rem(60) rem(10) rem(10);
+
+
+  &__text {
+    margin-top: rem(24);
+  }
+}
+
+/*
+  • Medium Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+@include up(medium) {
+  .card-focus-component {
+    padding: rem(80) rem(60);
+
+    &__text {
+      margin-top: 0;
+    }
+  }
+}

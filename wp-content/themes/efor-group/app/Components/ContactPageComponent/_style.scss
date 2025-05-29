@@ -1,0 +1,203 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+  • Large Breakpoint Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.contact-page-component {
+  &__title {
+    margin-bottom: rem(40);
+  }
+
+  &__text {
+    margin-bottom: rem(40);
+  }
+
+  img {
+    border-radius: rem(10) rem(10) rem(60) rem(10);
+  }
+
+  .contact-form {
+    form {
+      & > *:not(:last-child) {
+        margin-bottom: rem(24);
+      }
+    }
+
+    &__legal-notice {
+      .wpcf7-not-valid-tip {
+        display: none;
+      }
+    }
+
+    .wpcf7-exclusive-checkbox.wpcf7-not-valid {
+      input {
+        border: 1px solid #dc3232;
+      }
+    }
+
+    .wpcf7-not-valid-tip {
+      position: absolute;
+      min-width: rem(180);
+      bottom: rem(-30);
+      left: 0;
+      font-size: 14px;
+
+      @include down('medium') {
+        bottom: rem(-25)
+      }
+    }
+
+    .wpcf7-list-item-label {
+      display: none;
+    }
+
+    .wpcf7-list-item {
+      margin: 0 rem(12) 0 0;
+    }
+
+    textarea {
+      resize: none
+    }
+
+    textarea,
+    input {
+      width: 100%;
+      text-indent: 20px;
+    }
+
+    input[type="text"],
+    input[type="file"],
+    input[type="email"],
+    input[type="tel"],
+    textarea {
+      background: get-color('gray-10');
+      border-radius: rem(10);
+      margin-top: rem(12);
+    }
+
+    input[type="checkbox"] {
+      appearance: none;
+      background-color: get-color('gray-10');
+      margin: 0;
+      font: inherit;
+      color: currentColor;
+      width: rem(24);
+      height: rem(24);
+      border-radius: rem(2);
+      transform: translateY(-0.075em);
+      display: grid;
+      place-content: center;
+    }
+
+    input[type="checkbox"]::before {
+      content: "";
+      background: url("data:image/svg+xml,%3Csvg width='14' height='11' viewBox='0 0 14 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13 1.5L4.75 9.75L1 6' stroke='%231C1C1C' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+      width: rem(14);
+      height: rem(12);
+      transition: 120ms transform ease-in-out;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      top: 50%;
+    }
+
+    input[type="checkbox"]:checked::before {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__legal-notice {
+      padding-left: var(--gs-half-gutter);
+      padding-right: var(--gs-half-gutter);
+
+      .legend {
+        a {
+          display: initial;
+        }
+      }
+    }
+
+    &__btn {
+      position: relative;
+
+      &::after { // arrow right button form
+        position: absolute;
+        content: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 24' id='icon-arrow-right'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16.5858 11L11.2929 5.70711L12.7071 4.29289L20.4142 12L12.7071 19.7071L11.2929 18.2929L16.5858 13H3V11H16.5858Z' fill='white'/%3E%3C/svg%3E");
+        right: rem(32);
+        left: initial;
+        top: 50%;
+        display: inline-block;
+        width: rem(24);
+        height: rem(24);
+        transition: transform 0.2s 0.1s;
+        transform: translateY(-50%);
+      }
+
+      input {
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: get-color('white');
+        width: auto;
+        padding: 0;
+        margin-right: rem(32);
+        z-index: 1;
+      }
+
+      .wpcf7-spinner {
+        position: absolute;
+        right: - rem(80);
+        margin: 0;
+      }
+
+      &:hover,
+      &:focus {
+        &::after { // text button form
+          z-index: 0;
+        }
+
+        &::after { // arrow right button form
+          transform: translate(0.5rem, -50%);
+          background: transparent;
+        }
+      }
+    }
+  }
+}
+
+/*
+  • Large Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include up(large) {
+  .contact-page-component {
+    &__title {
+      margin-bottom: rem(30);
+    }
+
+    &__text {
+      margin-bottom: rem(44);
+    }
+  }
+}

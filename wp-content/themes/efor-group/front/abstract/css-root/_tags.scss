@@ -1,0 +1,112 @@
+@use 'sass:color';
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Variable(s)
+  • Base
+  • Default
+  • Sized
+*/
+
+/*
+  • Variable(s)
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+$tag-height: rem(28);
+
+/*
+  • Base
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+%tag-base {
+  pointer-events: auto;
+  overflow: hidden;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  box-shadow: none;
+  color: currentColor;
+  font-family: $font-default-stack;
+  font-size: $font-default-size;
+  font-style: $font-default-style;
+  font-weight: $font-default-weight;
+  line-height: $font-default-line-height;
+  letter-spacing: $font-default-letter-spacing;
+  text-align: center;
+  text-decoration: $font-default-text-decoration;
+  text-overflow: ellipsis;
+  text-transform: $font-default-text-transform;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:hover {
+    color: currentColor;
+  }
+}
+
+/*
+  • Default
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.tag {
+  @extend %tag-base;
+
+  min-width: rem(40);
+  min-height: $tag-height;
+  padding: rem(4) rem(14);
+  color: get-color('black-graphite');
+  font-family: get-font-stack('General-Sans');
+  font-weight: 400;
+  font-size: rem(14);
+  line-height: 140%;
+  border-radius: rem(85);
+
+  &--white {
+    color: get-color('white');
+  }
+}
+
+
+/*
+  • Inversed
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.framed-tag {
+  @extend .tag;
+
+  border: 1px solid get-color('black-graphite');
+  background: transparent;
+  color: get-color('black-graphite');
+}
+
+/*
+  • Sized
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.tag--sized {
+  width: 100%;
+}
+
+@include up(medium) {
+  .tag--sized {
+    width: auto;
+  }
+}

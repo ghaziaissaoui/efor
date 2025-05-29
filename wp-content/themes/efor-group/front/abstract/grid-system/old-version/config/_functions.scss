@@ -1,0 +1,55 @@
+@use 'sass:map';
+@use './variables';
+
+@function last-set ($map, $prop, $first: null, $last: null) {
+  $-found: null;
+  $-started: false;
+  $-ended: false;
+
+  @if $first == null {
+    $-started: true;
+  }
+
+  @each $-key, $-obj in $map {
+    @if ($-started and $-ended == false) or ($-started == false and $-key == $first) {
+      @if $-key == $first {
+        $-started: true;
+      }
+
+      @if $-key == $last {
+        $-ended: true;
+      }
+
+      $-value: map.get($-obj, $prop);
+
+      @if $-value {
+        $-found: $-value;
+      }
+    }
+  }
+
+  @if $-found {
+    @return $-found;
+  }
+  @else {
+    @return map.get(variables.$base, $prop);
+  }
+}
+
+@function get-config ($breakpoint, $prop) {
+  @if $breakpoint == 'base' {
+    @return map.get(variables.$base, $prop);
+  }
+  @else {
+    @return last-set(variables.$breakpoints, $prop, null, $breakpoint);
+  }
+}
+
+@function get-config-strict ($breakpoint, $prop) {
+  @if $breakpoint == 'base' {
+    @return map.get(variables.$base, $prop);
+  }
+  @else {
+    @return map.get(map.get(variables.$breakpoints, $breakpoint), $prop);
+  }
+}

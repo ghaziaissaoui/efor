@@ -1,0 +1,75 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.quote-component {
+  .quote {
+    &__container {
+      padding: rem(40) rem(24) rem(40) rem(54);
+    }
+
+    &__content {
+      position: relative;
+
+      p:first-child {
+        margin-bottom: rem(24);
+        font-size: rem(16);
+        line-height: 160%;
+      }
+
+      p:last-child {
+        font-size: rem(32);
+        line-height: 117%;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: - rem(27);
+        top: 0;
+        display: block;
+        width: rem(5);
+        height: 100%;
+        background: get-color('gold');
+      }
+    }
+  }
+}
+
+@include up(medium) {
+  .quote-component {
+    .quote {
+      &__container {
+        padding: rem(50) rem(60) rem(50) rem(105);
+      }
+
+      &__content {
+        p:first-child {
+          margin-bottom: rem(50);
+          font-size: rem(28);
+          line-height: 180%;
+        }
+
+        &::before {
+          left: - rem(52.5);
+        }
+      }
+    }
+  }
+}

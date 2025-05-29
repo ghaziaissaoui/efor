@@ -1,0 +1,212 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+  • Medium Breakpoint Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.content-alongside-component {
+  .content-alongside-left {
+    &__img {
+      margin-top: rem(24);
+
+      img {
+        border-radius: rem(10) rem(10) rem(60) rem(10);
+      }
+    }
+  }
+
+  .content-alongside-right {
+    &>*:not(:last-child) {
+      margin-bottom: rem(24);
+    }
+
+    &__text {
+      &>*:not(:last-child) {
+        margin-bottom: rem(24);
+      }
+    }
+
+    &__quote {
+      position: relative;
+      padding-bottom: rem(50);
+
+      &::after {
+        content: '';
+        opacity: 0.2;
+        background: currentColor;
+        width: 100%;
+        height: rem(1);
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        display: inline-block;
+      }
+
+      &>*:not(:last-child) {
+        margin-bottom: rem(40);
+      }
+
+      .u-icon {
+        width: rem(35);
+        height: rem(23);
+      }
+    }
+
+    &__accordion {
+      .accordion {
+        &>*:not(:last-child) {
+          margin-bottom: rem(24);
+        }
+
+        .item {
+          overflow: hidden;
+          position: relative;
+          padding-bottom: rem(24);
+          min-height: rem(66);
+
+          &::after {
+            content: '';
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: rem(1);
+            display: inline-block;
+            opacity: 0.2;
+            background: currentColor;
+            position: absolute;
+          }
+
+          &--open {
+            .item__content {
+              margin-top: rem(24);
+              opacity: 1;
+              visibility: visible;
+            }
+          }
+
+          &__index {
+            opacity: 0.6;
+            margin-right: rem(4);
+          }
+
+          &__intro {
+            cursor: pointer;
+          }
+
+          &__content {
+            max-height: 0;
+            will-change: max-height;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease-out;
+
+            .title {
+              margin-bottom: rem(24);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*
+  • Medium Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include down(medium) {
+  .content-alongside-component {
+    &>*:not(:last-child) {
+      margin-bottom: rem(50);
+    }
+  }
+}
+
+@include up(medium) {
+  .content-alongside-component {
+    .content-alongside-left {
+      &__img {
+        margin-top: rem(40);
+      }
+    }
+
+    .content-alongside-right {
+      &>*:not(:last-child) {
+        margin-bottom: rem(80);
+      }
+
+      &__text {
+        &>*:not(:last-child) {
+          margin-bottom: rem(40);
+        }
+      }
+
+      &__quote {
+        padding-bottom: rem(44);
+
+        .u-icon {
+          width: rem(46);
+          height: rem(30);
+        }
+      }
+
+      &__accordion {
+        .accordion {
+          &>*:not(:last-child) {
+            margin-bottom: rem(30);
+          }
+
+          .item {
+            padding-bottom: rem(30);
+            min-height: rem(68);
+
+            &--open {
+              .item__content {
+                margin-top: rem(30);
+              }
+            }
+
+            &__content {
+              .title {
+                margin-bottom: rem(30);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.quotation-wrapper {
+  border-radius: rem(10) rem(60) rem(10) rem(10);
+  padding: 0 var(--gs-gutter);
+
+  blockquote {
+    max-width: rem(710);
+    margin: 0 auto;
+    font-size: rem(26);
+    line-height: 1.38;
+
+    @include up('lg') {
+      font-size: rem(36);
+    }
+  }
+
+}

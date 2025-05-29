@@ -1,0 +1,38 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+.full-w-img-container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.full-w-img-component {
+  img {
+    border-radius: rem(10) rem(10) rem(60) rem(10);
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  .full-w-img-component {
+    .full-w-img {
+      margin-left: var(--gs-margins);
+      margin-right: var(--gs-margins);
+    }
+  }
+}

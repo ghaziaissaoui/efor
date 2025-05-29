@@ -1,0 +1,181 @@
+@use 'sass:map';
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/variables' as gs;
+@use 'front/abstract/grid-system/functions' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Mixin(s)
+  • Simple toggle classes
+  • Templaty toggle classes
+*/
+
+/*
+  • Mixin(s)
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@mixin hidden {
+  display: none !important;
+}
+
+@mixin visible($display: block) {
+  display: $display !important;
+}
+
+/*
+  • Simple toggle classes
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.u-invisible {
+  visibility: hidden !important;
+}
+
+.u-hidden {
+  @include hidden;
+}
+
+.u-inline {
+  @include visible(inline);
+}
+
+.u-block {
+  @include visible(block);
+}
+
+.u-inline-block {
+  @include visible(inline-block);
+}
+
+.u-flex {
+  @include visible(flex);
+}
+
+.u-inline-flex {
+  @include visible(inline-flex);
+}
+
+.u-table {
+  @include visible(table);
+}
+
+.u-inline-table {
+  @include visible(inline-table);
+}
+
+.u-table-cell {
+  @include visible(table-cell);
+}
+
+@each $-slug, $-obj in gs.$breakpoints {
+  $-prefix: get-breakpoint-prefix($-obj);
+  $-value: get-breakpoint-value($-obj);
+
+  @include up($-value) {
+    .#{$-prefix}u-invisible {
+      visibility: hidden !important;
+    }
+
+    .#{$-prefix}u-visible {
+      visibility: visible !important;
+    }
+
+    .#{$-prefix}u-hidden {
+      @include hidden;
+    }
+    .#{$-prefix}u-inline {
+      @include visible(inline);
+    }
+    .#{$-prefix}u-block {
+      @include visible;
+    }
+    .#{$-prefix}u-inline-block {
+      @include visible(inline-block);
+    }
+    .#{$-prefix}u-flex {
+      @include visible(flex);
+    }
+    .#{$-prefix}u-inline-flex {
+      @include visible(inline-flex);
+    }
+    .#{$-prefix}u-table {
+      @include visible(table);
+    }
+    .#{$-prefix}u-inline-table {
+      @include visible(inline-table);
+    }
+    .#{$-prefix}u-table-cell {
+      @include visible(table-cell);
+    }
+  }
+}
+
+/*
+  • Templaty toggle classes
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.u-sr-only {
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+}
+
+.u-hidden-anchor {
+  overflow: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  visibility: hidden !important;
+}
+
+.u-overflow-hidden {
+  overflow: hidden;
+}
+
+.u-clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+.u-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.u-scrollable-on-x {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  overscroll-behavior: contain;
+}
+
+.u-scrollable-on-y {
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  overscroll-behavior: contain;
+}
+
+.u-no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

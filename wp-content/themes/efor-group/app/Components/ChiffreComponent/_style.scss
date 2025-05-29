@@ -1,0 +1,51 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.chiffre-component {
+  &__number {
+    font-size: rem(180);
+    line-height: 100%;
+    font-family: get-font-stack('Sometimes-Times');
+    text-align: center;
+
+    @include up('wd') {
+      text-align: unset;
+      font-size: rem(212);
+    }
+  }
+
+  p {
+    color: get-color('gray-40')
+  }
+
+  &__background {
+    position: absolute;
+    left: 20vw;
+    bottom: -340%;
+  }
+
+  &__content {
+    max-width: rem(400);
+
+    @include down('lg') {
+      margin: 0 auto;
+    }
+  }
+}

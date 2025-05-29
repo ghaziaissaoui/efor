@@ -1,0 +1,13 @@
+<?php
+
+namespace App\Components\%ComponentName%;
+
+use App\Core\AbstractComponent;
+
+if (!defined('ABSPATH')) {
+    exit('Cheatin&#8217; uh?');
+}
+
+class %ComponentName% extends AbstractComponent
+{
+}

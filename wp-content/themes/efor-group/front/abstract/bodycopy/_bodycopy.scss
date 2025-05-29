@@ -1,0 +1,85 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+.bodycopy {
+  *:first-child {
+    margin-top: 0;
+  }
+
+  *:last-child {
+    margin-bottom: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-bottom: em(24);
+  }
+
+  p {
+    margin: 0 0 em(16) 0;
+  }
+
+  ul,
+  ol {
+    margin: em(24) 0;
+  }
+
+  li {
+    margin-bottom: em(4);
+  }
+
+  dl {
+    margin: em(24) 0;
+  }
+
+  dd {
+    margin-bottom: em(4);
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  figure {
+    margin: em(48) 0;
+  }
+
+  figcaption {
+    margin-top: em(16);
+    color: get-color(medium-gray);
+    font-size: em(14);
+  }
+
+  blockquote {
+    position: relative;
+    margin: em(24) 0 em(24) em(24);
+    color: get-color(brand-secondary);
+    font-size: em(20);
+    font-family: get-font-stack(serif);
+
+    &::before {
+      content: '"';
+      display: block;
+      position: absolute;
+      right: calc(100% + 1rem);
+      font-size: 2em;
+    }
+  }
+
+  q {
+    font-family: get-font-stack(serif);
+  }
+}
+
+@include up('medium') {
+  .bodycopy {
+    blockquote {
+      margin-left: em(40);
+    }
+  }
+}

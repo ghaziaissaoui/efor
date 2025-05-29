@@ -1,0 +1,273 @@
+@use "front/config/sass" as *;
+@use "front/abstract/grid-system/mixins" as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+
+  • The component
+  • context of: .close-button
+  • Prompt Modal
+*/
+
+/*
+  • The component
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.modal {
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  text-align: center;
+  visibility: hidden;
+  transition: visibility 0s 0.5s;
+  outline: none;
+  margin-bottom: 0 !important;
+
+  @include down("md") {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(59, 65, 61, 0.7);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  &__loader {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 1rem;
+    transform: translate(-50%, -50%);
+  }
+
+  &__scrollbox {
+    overscroll-behavior: contain;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 0;
+    border-radius: rem(60) 0 0 0;
+    height: calc(100vh - 80px);
+    width: 90%;
+
+    @include down(medium) {
+      width: 100%;
+    }
+
+    &::before {
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      height: 100%;
+    }
+  }
+
+  &__dialog {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    z-index: 1;
+    font-size: 1rem;
+    text-align: left;
+    opacity: 0;
+    border-radius: rem(60) 0 0 0;
+    transform: translateX(calc(50vw + 50%));
+    transition: opacity 0.3s 0s, transform 0.3s 0s;
+    outline: none;
+    background: get-color("white");
+    width: 100%;
+    min-height: rem(800);
+    height: 100%;
+
+    @include up("md") {
+      min-height: rem(900);
+    }
+  }
+
+  &__content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    .rich-text {
+      background: get-color("white");
+      margin-top: rem(50);
+
+      @include up(large) {
+        margin-top: rem(80);
+      }
+    }
+  }
+
+  &__close-button {
+    position: sticky;
+    left: 85%;
+    top: rem(26);
+    z-index: 2;
+    margin-top: rem(26);
+
+    cursor: pointer;
+
+    @include down("md") {
+      left: 80%;
+    }
+  }
+
+  .close-button {
+    border-radius: 100%;
+    min-height: 3rem;
+    min-width: 3rem;
+    background: get-color("white");
+
+    .carrieres & {
+      position: absolute;
+      transition: 0.3s ease;
+    }
+
+    &__bar {
+      background: get-color("black");
+      height: 1px;
+      position: absolute;
+      top: calc(50% - 1px);
+      transition: opacity 0.2s 0.1s, transform 0.2s 0.1s;
+      width: rem(24);
+      border-radius: 1px;
+
+      &:first-child {
+        transform: rotate(45deg);
+      }
+
+      &:nth-child(2) {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
+
+.modal--loading,
+.modal--visible {
+  pointer-events: auto;
+  visibility: visible;
+  transform: translate3d(0, 0, 0);
+  transition: visibility 0s 0s;
+
+  &::before {
+    opacity: 1;
+  }
+}
+
+.modal--loading {
+  .ui.loader {
+    display: block;
+  }
+}
+
+.modal--visible {
+  .modal {
+    &__dialog {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 0.3s 0.2s, transform 0.3s 0.2s;
+    }
+  }
+}
+
+.modal--dark {
+  color: #fff;
+
+  .modal {
+    // For nesting conveniance
+  }
+}
+
+@include up(large) {
+  .modal {
+    &__dialog {
+      // add styles here
+    }
+
+    &__close-button {
+      // add styles here
+    }
+  }
+}
+
+@include up(wide) {
+  .modal {
+    &__scrollbox {
+      width: 71.2%;
+    }
+  }
+}
+
+/*
+  • context of: .close-button
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.modal,
+.popin__samples {
+  .close-button {
+    &::before {
+      background-color: get-color("near-black");
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    &:hover {
+      &::before {
+        opacity: 0.1;
+      }
+    }
+  }
+}
+
+/* stylelint-disable-next-line */
+.modal--dark {
+  .close-button {
+    &::before,
+    &__bar {
+      background-color: #fff;
+    }
+  }
+}
+
+/*
+  • Prompt Modal
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.prompt-modal {
+  .modal {
+    // For nesting conveniance
+    // add styles here
+  }
+}

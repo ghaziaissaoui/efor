@@ -1,0 +1,118 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+  • Medium Breakpoint Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.rejoindre-component {
+  position: relative;
+  display: block;
+  padding: rem(60) 0 rem(280) 0;
+
+  .rejoindre-image {
+    &.image__left {
+      transform: translateX(-150%);
+
+      img {
+        border-radius: rem(20) rem(20) rem(120) rem(20);
+      }
+    }
+
+    &.image__right {
+      transform: translateX(150%);
+
+      img {
+        border-radius: rem(120) rem(20) rem(20) rem(20);
+      }
+    }
+  }
+
+  .content {
+    & > *:not(:last-child) {
+      margin-bottom: rem(20)
+    }
+  }
+}
+
+/*
+  • Medium Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include down('small') {
+  .rejoindre-component {
+    .rejoindre-image {
+
+      &.image__right {
+        position: absolute;
+        bottom: rem(-277);
+        padding: 0;
+      }
+    }
+  }
+}
+
+@include up('small') {
+  .rejoindre-component {
+    padding: rem(150) 0 rem(150) 0;
+
+    .rejoindre-image {
+      position: relative;
+
+      &.image__right {
+        transform: translateX(150%);
+        bottom: 0;
+      }
+    }
+
+    .content {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translate(-50%, 0%);
+
+      & > *:not(:last-child) {
+        margin-bottom: rem(40)
+      }
+    }
+  }
+}
+
+@include between(small, large) {
+  .rejoindre-component {
+    .rejoindre-image {
+      position: relative;
+
+      &.image__left {
+        top: rem(-90);
+      }
+    }
+  }
+}
+
+@include up('large') {
+  .rejoindre-component {
+    padding: rem(280) 0 rem(50) 0;
+
+    .rejoindre-image {
+      &.image__left {
+        top: rem(-206);
+      }
+    }
+  }
+}

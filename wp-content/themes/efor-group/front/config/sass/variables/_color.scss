@@ -1,0 +1,25 @@
+@use 'sass:map';
+
+$palette: (
+  'gold': #b48d57,
+  'green': #5a6b61,
+  'black-graphite': #1c1c1c,
+  'gold-secondary': #c9a778,
+  'gray-0': #fbfaf9,
+  'gray-10': #F0F0F0,
+  'gray-20': #F5F5F5,
+  'gray-40': #aca9a9,
+  'gray-30': #f1eeee,
+  'black': #000,
+  'white': #fff
+);
+//'gold': #c9a778,
+
+$primary-color: map.get($palette, 'black-graphite');
+
+:root {
+  --c-white: #fff;
+  --c-gold: #b48d57;
+  --c-black-graphite: #000;
+  --c-green: #5a6b61;
+}

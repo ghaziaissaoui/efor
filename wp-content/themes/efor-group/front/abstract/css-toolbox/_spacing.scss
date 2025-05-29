@@ -1,0 +1,72 @@
+@use 'sass:list';
+@use 'sass:meta';
+@use 'front/config/sass' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Variable(s)
+  • Prep.
+  • Templaty toggle classes
+*/
+
+/*
+  • Variable(s)
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+$-loop-iterations: 5;
+$-loop-additions: (('gs-gutter', var(--gs-gutter)), 10);
+
+/*
+  • Prep.
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+$-loop: (0);
+
+@for $-i from 1 to ($-loop-iterations + 1) {
+  $-loop: list.join($-loop, ($-i - 0.5, $-i), $separator: comma);
+}
+
+@each $-i in $-loop-additions {
+  @if list.index($-loop, $-i) == null {
+    $-loop: list.append($-loop, $-i, $separator: comma);
+  }
+}
+
+@debug $-loop;
+
+/*
+  • Templaty toggle classes
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@each $-i in $-loop {
+  $-value-index: if(meta.type-of($-i) == 'list', str-replace(".", "\\.", list.nth($-i, 1) + ""), str-replace(".", "\\.", $-i + ""));
+  $-value: if(meta.type-of($-i) == 'list', list.nth($-i, 2), $-i);
+
+  .u-h-spaced-#{$-value-index} {
+    & > * + * {
+      margin-left: calc-space($-value) !important;
+    }
+  }
+
+  .u-h-tail-spaced-#{$-value-index} {
+    & > *:not(:last-child) {
+      margin-right: calc-space($-value) !important;
+    }
+  }
+
+  .u-v-spaced-#{$-value-index} {
+    & > * + * {
+      margin-top: calc-space($-value) !important;
+    }
+  }
+
+  .u-v-tail-spaced-#{$-value-index} {
+    & > *:not(:last-child) {
+      margin-bottom: calc-space($-value) !important;
+    }
+  }
+}

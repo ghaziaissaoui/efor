@@ -1,0 +1,147 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+  • Medium Breakpoint Styles
+  • Wide Breakpoint Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.certifications-slider-component {
+  position: relative;
+
+  ul {
+    list-style: none;
+  }
+
+  .certif-header {
+    &__arrows {
+      justify-content: flex-end;
+
+      .arrow-prev {
+        transform: rotateY(180deg);
+        margin-right: rem(24);
+      }
+    }
+  }
+
+  .interventions-slider {
+    margin-top: rem(40);
+  }
+
+  .certif-slider {
+    margin-top: rem(40);
+
+    &__left {
+      .title {
+        margin-bottom: rem(24);
+      }
+    }
+
+    &__right {
+      .image {
+        border-radius: rem(10) rem(10) rem(60) rem(10);
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+/*
+  • Medium Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include down('medium') {
+  .certifications-slider-component {
+    .interventions-slider {
+      margin-top: rem(40);
+
+      .certif-slider__right {
+        margin-bottom: rem(40);
+      }
+    }
+
+
+    .certif-slider {
+      &__right {
+        margin-bottom: rem(40);
+      }
+    }
+  }
+}
+
+@include up('medium') {
+  .certifications-slider-component {
+    .certif-header {
+      &__arrows {
+        height: 100%;
+      }
+    }
+
+    .interventions-slider {
+      margin-top: rem(110);
+
+      .certif__left {
+        align-self: center;
+
+
+        .title {
+          margin-bottom: rem(60);
+        }
+      }
+    }
+
+    .certif-slider {
+      margin-top: rem(110);
+
+      &__left {
+        align-self: center;
+
+
+        .title {
+          margin-bottom: rem(60);
+        }
+      }
+    }
+  }
+}
+
+/*
+  • Wide Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+@include up('wide') {
+  .certifications-slider-component {
+    .certif-slider {
+      .certif-slider {
+        &__left {
+          flex-basis: calc(33.3333333333% + var(--gs-gutter));
+          width: calc(33.3333333333% + var(--gs-gutter));
+          max-width: calc(33.3333333333% + var(--gs-gutter));
+        }
+
+        &__right {
+          flex-basis: calc(41.6666666667% + var(--gs-gutter));
+          width: calc(41.6666666667% + var(--gs-gutter));
+          max-width: calc(41.6666666667% + var(--gs-gutter));
+
+        }
+      }
+    }
+
+  }
+}

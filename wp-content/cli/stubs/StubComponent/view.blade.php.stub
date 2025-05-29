@@ -1,0 +1,4 @@
+{{-- dump($data): All data's available for this view --}}
+<%ComponentNameDashed% class="%ComponentNameDashed%">
+  @dump($data)
+</%ComponentNameDashed%>

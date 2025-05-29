@@ -1,0 +1,452 @@
+@use 'sass:list';
+@use 'sass:meta';
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/variables' as gs;
+@use 'front/abstract/grid-system/functions' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+:root {
+  --block-ratio: 100%;
+}
+
+.ratio-block {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    padding-top: var(--block-ratio);
+  }
+
+  &__content {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+.ratio-block--1\/1 {
+  --block-ratio: 100%;
+}
+
+.ratio-block--1\/2 {
+  --block-ratio: 50%;
+}
+
+.ratio-block--16\/9 {
+  --block-ratio: 56.25%;
+}
+
+.ratio-block--9\/16 {
+  --block-ratio: 177.77777778%;
+}
+
+.ratio-block--4\/3 {
+  --block-ratio: 133.333333%;
+}
+
+.ratio-block--4\/5 {
+  --block-ratio: 80%;
+}
+
+.ratio-block--14\/15 { // 350/375 simplify -> 14/15 // Hero Block Image Sided Mobile
+  --block-ratio: 93.3333333%;
+}
+
+.ratio-block--9\/11 { // 540/650 simplify -> 9/11 // Hero Block Image Sided Desktop
+    --block-ratio: 81.8181818%;
+}
+
+.ratio-block--70\/67 { // 350/335 simplify -> 70/67 // Hero Block Full Image Mobile
+  --block-ratio: 104.477612%;
+}
+
+.ratio-block--9\/17 { // 720/1360 simplify -> 9/17 // Hero Block Full Image Desktop
+  --block-ratio: 52.9411765%;
+}
+
+.ratio-block--31\/106 { // 310/1060 simplify -> 31/106  // Block Contact Form Desktop
+  --block-ratio: 29.1509433962%;
+}
+
+.ratio-block--48\/67 { // 240/335 simplify -> 48/67  // Block Contact Form Mobile
+  --block-ratio: 71.6417910448%;
+}
+
+.ratio-block--97\/63 { // 485/315 simplify -> 97/63 // Block Expert Mobile
+  --block-ratio: 153.968254%;
+}
+
+.ratio-block--5\/3 { // 485/315 simplify -> 97/63 // Block Expert Desktop
+  --block-ratio: 71%;
+}
+
+.ratio-block--127\/200 { // 254/400 simplify -> 127/200 // Block Card Actu Desktop
+  --block-ratio: 63.5%;
+}
+
+.ratio-block--2\/3 { // 200/300 simplify -> 2/3 // Block Card Actu Mobile
+  --block-ratio: 66.6666667%;
+}
+
+.ratio-block--118\/133 { // 590/665 simplify -> 118/133 // Block Equality Image Left Desktop
+  --block-ratio: 88.7218045%;
+}
+
+.ratio-block--166\/97 { // 332/194 simplify -> 166/97 // Block Equality Image Left Mobile
+  --block-ratio: 171.134021%;
+}
+
+.ratio-block--571\/665 { // 571/665 simplify // Block Equality Image Right Desktop
+  --block-ratio: 85.8646617%;
+}
+
+.ratio-block--174\/97 { // 348/194 simplify -> 174/97 // Block Equality Image Right Mobile
+  --block-ratio: 179.381443%;
+}
+
+.ratio-block--18\/61 { // 180/610 simplify -> 18/61 // Block Strategy Desktop
+  --block-ratio: 29.5081967%;
+}
+
+.ratio-block--1\/7 { // 180/1260 simplify -> 1/7 // Block Strategy Desktop Full Size
+  --block-ratio: 14.2857143%;
+}
+
+.ratio-block--127\/335 { // 127/335 // Block Strategy Mobile
+  --block-ratio: 37.9104478%;
+}
+
+.ratio-block--97\/252 { // 485/1260 simplify -> 97/252 // Block Full Width Image Desktop
+  --block-ratio: 38.4920635%;
+}
+
+.ratio-block--50\/67 { // 250/335 simplify -> 50/67 // Block Content Alongside Image Small Mobile
+  --block-ratio: 74.6268657%;
+}
+
+.ratio-block--40\/49 { // 400/490 simplify -> 40/49 // Block Content Alongside Image Small Desktop
+  --block-ratio: 81.6326531%;
+}
+
+.ratio-block--153\/245 { // 306/490 simplify -> 153/245 // Block Content Alongside Image Extra Small Desktop
+  --block-ratio: 62.4489795918%;
+}
+
+.ratio-block--50\/63 { // 250/315 simplify -> 50/63 // Block Content Alongside Image Extra Small Mobile
+  --block-ratio: 79.3650793651%;
+}
+
+.ratio-block--89\/67 { // 445/335 simplify -> 89/67 // Block Content Alongside Image Big Mobile
+  --block-ratio: 132.835821%;
+}
+
+.ratio-block--66\/49 { // 660/490 simplify -> 66/49 // Block Content Alongside Image Big Desktop
+  --block-ratio: 134.693878%;
+}
+
+.ratio-block--46\/67 { // 230/335 simplify -> 66/49 // Block Carousel Desktop
+  --block-ratio: 68.6567164%;
+}
+
+.ratio-block--25\/48 { // 750/1440 simplify -> 25/48 // Block Hero Testimony Desktop
+  --block-ratio: 52.083333%;
+}
+
+.ratio-block--307\/190 { // 307/190 // Block Direction Talents Mobile
+  --block-ratio: 161.578947%;
+}
+
+.ratio-block--89\/53 { // 445/265 simplify -> 89/53 // Block Slider Talents
+  --block-ratio: 167.924528%;
+}
+
+.ratio-block--203\/280 { // 203/280 // Block Certifications slider Mobile
+  --block-ratio: 72.50%;
+}
+
+.ratio-block--405\/556 { // 405/556 // Block Certifications slider Desktop
+  --block-ratio: 72.8417266%;
+}
+
+.ratio-block--72\/49 { // 720/490 simplify -> 72/48 // Block Expand Video Desktop
+  --block-ratio: 146.938776%;
+}
+
+.ratio-block--50\/39 { // 300/234 simplify -> 50/39 // Block Expand Video Mobile
+  --block-ratio: 128.205128%;
+}
+
+.ratio-block--155\/132 { // 310/264 simplify -> 155/132 // Block Join Img Left Desktop -- First Case
+  --block-ratio: 117.424242%;
+}
+
+.ratio-block--35\/24 { // 525/360 simplify -> 35/24 // Block Join Img Right Desktop -- First Case
+  --block-ratio: 145.833333%;
+}
+
+.ratio-block--418\/315 { // 418/315 // Block Join Img Right Mobile -- First Case
+  --block-ratio: 132.698413%;
+}
+
+.ratio-block--20\/53 { // 300/795 simplify -> 20/53 // Block Join Img Left Desktop -- Second Case
+  --block-ratio: 37.7358491%;
+}
+
+.ratio-block--163\/315 { // 163/315 // Block Join Img Left Mobile -- Second Case
+  --block-ratio: 51.7460317%;
+}
+
+.ratio-block--12\/13 { // 300/325 simplify -> 12/13 // Block Join Img Right Desktop -- Second Case
+  --block-ratio: 90.3076923%;
+}
+
+.ratio-block--11\/15 { // 231/315 simplify -> 11/15 // Block Join Img Right Mobile -- Second Case
+  --block-ratio: 73.3333333%;
+}
+
+.ratio-block--35\/38 { // 525/570 simplify -> 35/38 // Block Join Img Desktop -- Third Case
+  --block-ratio: 92.1052632%;
+}
+
+.ratio-block--418\/315 { // 418/315 Block Join Img Mobile -- Third Case
+  --block-ratio: 132.698413%;
+}
+
+.ratio-block--80\/117 { // 400/585 simplify -> 80/117 // Image template contact
+  --block-ratio: 68.3760683761%;
+}
+
+.ratio-block--50\/67 { // 250/335 simplify -> 50/67 // Image template contact - Mobile
+  --block-ratio: 134%;
+}
+
+.ratio-block--143\/131 { // 429/393 simplify -> 143/131 // Redirect card HUB
+  --block-ratio: 109.160305344%;
+}
+
+.ratio-block--440\/313 { // 440/313 simplify // Redirect card HUB - Mobile
+  --block-ratio: 140.575079872%;
+}
+
+.ratio-block--150\/143 { // 750/715 simplify -> 150/143 // Block Map Desktop
+  --block-ratio: 104.895105%;
+}
+
+.ratio-block--450\/331 { // 450/331 // Block Map Mobile
+  --block-ratio: 135.951662%;
+}
+
+@each $-slug, $-obj in gs.$breakpoints {
+  $-prefix: get-breakpoint-prefix($-obj);
+  $-value: get-breakpoint-value($-obj);
+
+  @include up($-value) {
+    .#{$-prefix}ratio-block--1\/1 {
+      --block-ratio: 100%;
+    }
+
+    .#{$-prefix}ratio-block--1\/2 {
+      --block-ratio: 50%;
+    }
+
+    .#{$-prefix}ratio-block--16\/9 {
+      --block-ratio: 56.25%;
+    }
+
+    .#{$-prefix}ratio-block--9\/16 {
+      --block-ratio: 177.77777778%;
+    }
+
+    .#{$-prefix}ratio-block--4\/3 {
+      --block-ratio: 133.333333%;
+    }
+
+    .#{$-prefix}ratio-block--14\/15 {
+      --block-ratio: 93.3333333%;
+    }
+
+    .#{$-prefix}ratio-block--9\/11 {
+      --block-ratio: 81.8181818%;
+    }
+
+    .#{$-prefix}ratio-block--70\/67 {
+      --block-ratio: 104.477612%;
+    }
+
+    .#{$-prefix}ratio-block--9\/17 {
+      --block-ratio: 52.9411765%;
+    }
+
+    .#{$-prefix}ratio-block--127\/200 {
+      --block-ratio: 63.5%;
+    }
+
+    .#{$-prefix}ratio-block--2\/3 {
+      --block-ratio: 66.6666667%;
+    }
+
+    .#{$-prefix}ratio-block--97\/63 {
+      --block-ratio: 153.968254%;
+    }
+
+    .#{$-prefix}ratio-block--31\/106 {
+      --block-ratio: 29.1509433962%;
+    }
+
+    .#{$-prefix}ratio-block--48\/67 {
+      --block-ratio: 71.6417910448%;
+    }
+
+    .#{$-prefix}ratio-block--18\/61 {
+      --block-ratio: 29.5081967%;
+    }
+
+    .#{$-prefix}ratio-block--1\/7 {
+      --block-ratio: 14.2857143%;
+    }
+
+    .#{$-prefix}ratio-block--127\/335 {
+      --block-ratio: 37.9104478%;
+    }
+
+    .#{$-prefix}ratio-block--97\/252 {
+      --block-ratio: 38.4920635%;
+    }
+
+    .#{$-prefix}ratio-block--50\/67 {
+      --block-ratio: 74.6268657%;
+    }
+
+    .#{$-prefix}ratio-block--40\/49 {
+      --block-ratio: 81.6326531%;
+    }
+
+    .#{$-prefix}ratio-block--89\/67 {
+      --block-ratio: 132.835821%;
+    }
+
+    .#{$-prefix}ratio-block--66\/49 {
+      --block-ratio: 134.693878%;
+    }
+
+    .#{$-prefix}ratio-block--46\/67 {
+      --block-ratio: 68.6567164%;
+    }
+
+    .#{$-prefix}ratio-block--25\/48 {
+      --block-ratio: 52.083333%;
+    }
+
+    .#{$-prefix}ratio-block--89\/53 {
+      --block-ratio: 167.924528%;
+    }
+
+    .#{$-prefix}ratio-block--405\/556 {
+      --block-ratio: 72.8417266%;
+    }
+
+    .#{$-prefix}ratio-block--203\/280 {
+      --block-ratio: 72.50%;
+    }
+
+    .#{$-prefix}ratio-block--118\/133 {
+      --block-ratio: 88.7218045%;
+    }
+
+    .#{$-prefix}ratio-block--166\/97 {
+      --block-ratio: 171.134021%;
+    }
+
+    .#{$-prefix}ratio-block--571\/665 {
+      --block-ratio: 85.8646617%;
+    }
+
+    .#{$-prefix}ratio-block--174\/97 {
+      --block-ratio: 179.381443%;
+    }
+
+    .#{$-prefix}ratio-block--72\/49 {
+      --block-ratio: 146.938776%;
+    }
+
+    .#{$-prefix}ratio-block--50\/39 {
+      --block-ratio: 128.205128%;
+    }
+
+    .#{$-prefix}ratio-block--155\/132 {
+      --block-ratio: 117.424242%;
+    }
+
+    .#{$-prefix}ratio-block--35\/24 {
+      --block-ratio: 145.833333%;
+    }
+
+    .#{$-prefix}ratio-block--418\/315 {
+      --block-ratio: 145.833333%;
+    }
+
+    .#{$-prefix}ratio-block--20\/53 {
+      --block-ratio: 37.7358491%;
+    }
+
+    .#{$-prefix}ratio-block--163\/315 {
+      --block-ratio: 51.7460317%;
+    }
+
+    .#{$-prefix}ratio-block--12\/13 {
+      --block-ratio: 90.3076923%;
+    }
+
+    .#{$-prefix}ratio-block--11\/15 {
+      --block-ratio: 73.3333333%;
+    }
+
+    .#{$-prefix}ratio-block--35\/38 {
+      --block-ratio: 92.1052632%;
+    }
+
+    .#{$-prefix}ratio-block--418\/315 {
+      --block-ratio: 132.698413%;
+    }
+
+    .#{$-prefix}ratio-block--80\/117 {
+      --block-ratio: 68.3760683761%
+    }
+
+    .#{$-prefix}ratio-block--50\/67 {
+      --block-ratio: 134%;
+    }
+
+    .#{$-prefix}ratio-block--143\/131 {
+      --block-ratio: 109.160305344%;
+    }
+
+    .#{$-prefix}ratio-block--440\/313 {
+      --block-ratio: 140.575079872%;
+    }
+
+    .#{$-prefix}ratio-block--307\/190 {
+      --block-ratio: 161.578947%;
+    }
+
+    .#{$-prefix}ratio-block--150\/143 {
+      --block-ratio: 104.895105%;
+    }
+
+    .#{$-prefix}ratio-block--450\/331 {
+      --block-ratio: 135.951662%;
+    }
+
+    .#{$-prefix}ratio-block--153\/245 {
+      --block-ratio: 62.4489795918%;
+    }
+
+    .#{$-prefix}ratio-block--50\/63 {
+      --block-ratio: 79.3650793651%;
+    }
+  }
+}

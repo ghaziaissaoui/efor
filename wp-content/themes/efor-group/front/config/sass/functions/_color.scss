@@ -1,0 +1,42 @@
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:math';
+@use './unit' as *;
+
+@function scrim-gradient($color: #000, $direction: 'to bottom', $start: 0, $type: 'linear') {
+  $scrimCoordinates: (
+    0: 1,
+    19: 0.738,
+    34: 0.541,
+    47: 0.382,
+    56.5: 0.278,
+    65: 0.194,
+    73: 0.126,
+    80.2: 0.075,
+    86.1: 0.042,
+    91: 0.021,
+    95.2: 0.008,
+    98.2: 0.002,
+    100: 0
+  );
+
+  $start: strip-unit($start);
+  $ratio: math.div(100 - $start, 100);
+
+  $hue: color.hue($color);
+  $saturation: color.saturation($color);
+  $lightness: color.lightness($color);
+  $stops: ();
+
+  @each $colorStop, $alphaValue in $scrimCoordinates {
+    $stop: hsla($hue, $saturation, $lightness, $alphaValue) math.percentage(math.div($colorStop * $ratio + $start, 100));
+    $stops: list.append($stops, $stop, comma);
+  }
+
+  @if $type == 'linear' {
+    @return linear-gradient(unquote($direction), $stops);
+  }
+  @else if $type == 'radial' {
+    @return radial-gradient(unquote($direction), $stops);
+  }
+}

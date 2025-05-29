@@ -1,0 +1,60 @@
+@use 'sass:map';
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/variables' as gs;
+@use 'front/abstract/grid-system/functions' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+.u-static {
+  position: static !important;
+}
+
+.u-relative {
+  position: relative !important;
+}
+
+.u-absolute {
+  position: absolute !important;
+}
+
+.u-fixed {
+  position: fixed !important;
+}
+
+.u-sticky {
+  position: sticky !important;
+}
+
+.u-initial {
+  position: initial !important;
+}
+
+@each $-slug, $-obj in gs.$breakpoints {
+  $-prefix: get-breakpoint-prefix($-obj);
+  $-value: get-breakpoint-value($-obj);
+
+  @include up($_value) {
+    .#{$-prefix}u-static {
+      position: static !important;
+    }
+
+    .#{$-prefix}u-relative {
+      position: relative !important;
+    }
+
+    .#{$-prefix}u-absolute {
+      position: absolute !important;
+    }
+
+    .#{$-prefix}u-fixed {
+      position: fixed !important;
+    }
+
+    .#{$-prefix}u-sticky {
+      position: sticky !important;
+    }
+
+    .#{$-prefix}u-initial {
+      position: sticky !important;
+    }
+  }
+}

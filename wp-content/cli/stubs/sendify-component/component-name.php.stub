@@ -1,0 +1,19 @@
+<?php
+namespace App\Sendify\Components\%ComponentName% ;
+
+use VostraPress\Core\ComponentBase;
+use VostraPress\Plugin;
+
+class %ComponentName%  extends ComponentBase
+{
+    protected string $config = __DIR__ . '/config.json';
+    protected $layoutSettingsActivated = true;
+
+    public function settings(): array
+    {
+        return array_merge(
+            parent::settings(),
+            array()
+        );
+    }
+}

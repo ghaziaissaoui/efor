@@ -1,0 +1,149 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+/*
+  • Video file
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.video-preview {
+  position: relative;
+  cursor: pointer;
+
+  &__cover-image {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: opacity 0.3s;
+  }
+
+  .icon {
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .loader {
+    display: none;
+  }
+}
+
+.video-preview.-loading {
+  .loader {
+    display: block;
+  }
+}
+
+.video-preview.-playing {
+  video {
+    z-index: 2;
+  }
+
+  .video-preview__cover-image {
+    opacity: 0;
+  }
+}
+
+.video-preview.-playing-full {
+  .icon {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+
+  .video-preview__cover-image {
+    opacity: 0;
+  }
+}
+
+/*
+  • Youtube video
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.youtube-preview-loop {
+  position: relative;
+  cursor: pointer;
+
+  .loader {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 3px solid transparent;
+    border-top-color: get-color('white');
+    border-radius: 10rem;
+    animation: 1s infinite linear loader-loop;
+  }
+
+  &__insertion-point {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  &__cover-image {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    transition: opacity 0.3s;
+
+  }
+
+  .loader {
+    display: none;
+    position: absolute;
+    z-index: 4;
+    left: rem(20);
+    top: rem(20);
+  }
+
+  .icon {
+    z-index: 2;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.youtube-preview-loop.-loading {
+  .loader {
+    display: block;
+  }
+}
+
+.youtube-preview-loop.-playing {
+  .youtube-preview-loop__cover-image {
+    opacity: 0;
+  }
+}
+
+.youtube-full-video {
+  &__insertion-point {
+    z-index: 5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: rem(10) rem(10) rem(60) rem(10);
+  }
+}
+
+@keyframes loader-loop {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}

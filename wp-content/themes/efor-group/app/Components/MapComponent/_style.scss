@@ -1,0 +1,201 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+@import url('https://unpkg.com/leaflet@1.9.3/dist/leaflet.css');
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+  • Medium Breakpoint Styles
+  • Large Breakpoint Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+.map {
+  margin-top: rem(80);
+  display: flex;
+  height: 100%;
+
+  .leaflet-top,
+  .leaflet-bottom {
+    z-index: 800;
+  }
+
+  .leaflet-popup-content-wrapper {
+    border-radius: rem(5);
+  }
+
+  .leaflet-popup {
+    bottom: -30px;
+  }
+
+  .leaflet-popup-content p {
+    text-align: center;
+    font-family: get-font-stack('General-Sans');
+    font-weight: 400;
+    font-size: rem(16);
+
+    @include up(medium) {
+      font-size: rem(18);
+    }
+  }
+
+  &-left {
+    &__title {
+      margin-bottom: rem(34);
+    }
+  }
+
+  .accordion {
+   // margin-top: rem(34);
+
+    .item {
+      z-index: 0;
+
+      .implantation {
+        border-radius: rem(10) rem(60) rem(10) rem(10);
+        width: auto;
+        cursor: pointer;
+
+        &__container {
+          padding: rem(24);
+        }
+
+        &.place--active {
+          border: 2px solid get-color('gold');
+          transition: 0.3s;
+        }
+      }
+
+      &__intro {
+        .u-icon {
+          transform: rotate(-90deg);
+          transition: 0.3s;
+        }
+      }
+
+      &__content {
+        border-radius: rem(10) rem(60) rem(10) rem(10);
+      }
+
+      &--open {
+        .item__intro {
+          .u-icon {
+            transform: rotate(0deg);
+          }
+        }
+        .item__content {
+          margin-bottom: rem(24);
+        }
+      }
+    }
+  }
+}
+
+.map-component {
+  .ratio-block {
+    border-radius: rem(10) rem(10) rem(60) rem(10);
+    overflow: hidden;
+  }
+}
+
+/*
+  • Medium Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include down(medium) {
+  .map {
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+
+    .accordion {
+      .item {
+        .implantation {
+          height: auto;
+          max-width: 100%;
+          width: 80vw;
+
+          &.place--active {
+            width: calc(80vw - 4px);
+          }
+
+          .implantation__subtitle {
+            font-size: rem(16);
+            line-height: 140%;
+          }
+        }
+      }
+    }
+
+    &-left {
+      order: 2;
+    }
+
+    &-right {
+      margin-top: rem(34);
+      order: 1;
+
+      .ratio-block {
+        --block-ratio: 118.951662%;
+      }
+    }
+  }
+}
+
+@include up(medium) {
+  .map {
+    margin-top: rem(40);
+
+    .accordion {
+     // margin-top: rem(58);
+
+      .item {
+        .item__content {
+          & > *:not(:last-child) {
+            margin-bottom: rem(46)
+          }
+
+          flex-direction: column;
+        }
+
+        &--open {
+          padding-bottom: rem(46);
+
+          .item__content {
+            margin-bottom: rem(5);
+          }
+        }
+      }
+    }
+
+    &-left {
+      &__title {
+        margin-bottom: rem(30);
+      }
+    }
+
+    &-right {
+      .ratio-block {
+        --block-ratio: 94.895105%;
+      }
+
+      .map-sticky {
+        position: sticky;
+        left: 0;
+        top: rem(200);
+      }
+    }
+  }
+}

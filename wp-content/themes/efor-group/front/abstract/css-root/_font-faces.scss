@@ -1,0 +1,21 @@
+@use 'sass:list';
+@use 'sass:string';
+@use 'front/config/sass' as *;
+
+@each $font in $font-families {
+  $font-family: string.quote(#{list.nth($font, 1)});
+  $font-variants: list.nth($font, 2);
+
+  @each $variant in $font-variants {
+    @if $variant {
+      $font-path: 'fonts/' + $font-family + '/';
+      $font-file: list.nth($variant, 1);
+      $font-weight: list.nth($variant, 2);
+      $font-style: list.nth($variant, 3);
+
+      @if $font-file {
+        @include font-declare-font-face($font-family, $font-path, $font-file, $font-weight, $font-style);
+      }
+    }
+  }
+}

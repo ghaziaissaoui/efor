@@ -1,0 +1,436 @@
+@use 'sass:color';
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Variable(s)
+  • Base
+  • Default
+  • Inversed
+  • Round Button
+  • Sized
+  • Functional Button
+  • Back Button
+  • Link Button
+  • Icon Button
+  • Vendor Specific
+*/
+
+/*
+  • Variable(s)
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+$button-height: rem(60);
+$button-small-height: rem(42);
+
+/*
+  • Base
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+%button-base {
+  cursor: pointer;
+  pointer-events: auto;
+  overflow: hidden;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background: transparent;
+  box-shadow: none;
+  color: currentColor;
+  font-family: $font-default-stack;
+  font-size: $font-default-size;
+  font-style: $font-default-style;
+  font-weight: $font-default-weight;
+  line-height: $font-default-line-height;
+  letter-spacing: $font-default-letter-spacing;
+  text-align: center;
+  text-decoration: $font-default-text-decoration;
+  text-overflow: ellipsis;
+  text-transform: $font-default-text-transform;
+
+  @include up(medium) {
+    white-space: nowrap;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+/*
+  • Default
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.button {
+  @extend %button-base;
+
+  min-width: rem(40);
+  min-height: $button-height;
+  padding: rem(18) rem(30);
+  background: currentColor;
+  position: relative;
+  font-size: rem(15);
+  line-height: 141%;
+  font-family: get-font-stack('General-Sans');
+  font-weight: 400;
+  border-radius: 1000px;
+
+  span {
+    color: get-color('white');
+    z-index: 1;
+    position: relative;
+  }
+
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    position: absolute;
+    transition: background 0.5s;
+  }
+
+  &--white {
+    span {
+      color: get-color('black-graphite');
+    }
+
+    &:hover {
+      span {
+        color: get-color('white');
+      }
+
+      svg {
+        color: get-color('white');
+        z-index: 2;
+      }
+    }
+  }
+
+  &--green-for-dark-bg {
+    &:hover {
+      span {
+        color: get-color('black-graphite');
+      }
+
+      svg {
+        color: get-color('black-graphite');
+      }
+    }
+  }
+
+  &--white-for-dark-bg {
+    span {
+      color: get-color('black-graphite');
+    }
+
+    &:hover {
+      &::before {
+        background: get-color('gold') !important;
+      }
+
+      span {
+        color: get-color('white');
+      }
+
+      svg {
+        color: get-color('white') !important;
+      }
+    }
+  }
+
+  &--small {
+    padding: rem(12) rem(24);
+    min-height: $button-small-height;
+    font-size: rem(12);
+    line-height: 145%;
+  }
+
+  .u-icon--left {
+    transition: transform 0.2s 0.1s;
+  }
+
+  .u-icon--right {
+    transition: transform 0.2s 0.1s;
+  }
+
+  &:hover {
+    color: currentColor;
+
+    &::before {
+      background: currentColor;
+      transition: background 0.5s;
+    }
+
+    span,
+    input {
+      position: relative;
+    }
+  }
+
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
+    span {
+      background-size: 100% 100%;
+    }
+
+    .u-icon--left {
+      transform: translateX(#{rem(-8)});
+    }
+
+    .u-icon--right {
+      transform: translateX(#{rem(8)});
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+
+/*
+  • Inversed
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.framed-button {
+  @extend .button;
+
+  border: 1px solid get-color('black-graphite');
+  background: transparent;
+  color: get-color('black-graphite');
+
+  &:hover {
+    color: get-color('black-graphite');
+  }
+}
+
+
+/*
+  • Round button
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.round-button {
+  @extend %button-base;
+
+  min-width: rem(60);
+  min-height: rem(60);
+  border-radius: 100px;
+  padding: rem(12);
+  color: currentColor;
+  position: relative;
+
+  &::after {
+    content: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 24' id='icon-arrow-right'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16.5858 11L11.2929 5.70711L12.7071 4.29289L20.4142 12L12.7071 19.7071L11.2929 18.2929L16.5858 13H3V11H16.5858Z' fill='white'/%3E%3C/svg%3E");
+    display: block;
+    width: rem(24);
+    height: rem(24);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &--black {
+    &::after {
+      content: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 25 24' id='icon-arrow-right'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M16.5858 11L11.2929 5.70711L12.7071 4.29289L20.4142 12L12.7071 19.7071L11.2929 18.2929L16.5858 13H3V11H16.5858Z' fill='currentColor'/%3E%3C/svg%3E");
+    }
+  }
+}
+
+/*
+  • Sized
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.button--sized {
+  width: 100%;
+}
+
+@include up(medium) {
+  .button--sized {
+    width: auto;
+  }
+}
+
+/*
+  • Back Button
+  ---------- ---------- ---------- ---------- ----------
+*/
+.back-button {
+  text-decoration: none;
+
+  svg {
+    transform: rotate(90deg);
+  }
+
+  @include down(medium) {
+    margin-bottom: rem(40);
+  }
+}
+
+/*
+  • Link Button
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+// It semantically should be a button but it looks like text
+
+.link-button {
+  @extend %button-base;
+
+  overflow: visible;
+  min-width: 0;
+  background:
+    linear-gradient(to top, currentColor 2px, transparent 0) left center no-repeat,
+    linear-gradient(to top, transparent 1px, currentColor 1px, currentColor 1px, transparent 2px) left center no-repeat;
+  background-size: 0 100%, 100% 100%;
+  font-family: get-font-stack('General-Sans');
+  font-size: rem(17);
+  line-height: 160%;
+  font-style: italic;
+  font-weight: 300;
+  transition: background-size 0.2s;
+
+  &:hover,
+  &:focus {
+    background-size: 100% 100%;
+    color: currentColor;
+  }
+}
+
+.wrapping-link-button {
+  @extend .link-button;
+
+  background: none;
+
+  & > span:not([data-no-link-fx]) {
+    display: inline-block;
+    background:
+      linear-gradient(to top, currentColor 2px, transparent 0) left center no-repeat,
+      linear-gradient(to top, transparent 1px, currentColor 1px, currentColor 1px, transparent 2px) left center no-repeat;
+    background-size: 0% 100%, 100% 100%;
+    transition: background-size 0.2s;
+  }
+
+  &:hover,
+  &:focus {
+    & > span:not([data-no-link-fx]) {
+      background-size: 100% 100%;
+    }
+  }
+}
+
+.link-button-wrapper {
+  .link-button-proxy {
+    @extend .link-button;
+  }
+
+  &:hover,
+  &:focus {
+    .link-button-proxy {
+      background-size: 100% 100%;
+    }
+  }
+}
+
+/*
+  • Functional Button
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+// It semantically should be a button but it does not look like
+// a button. Ex: a clickable icon
+
+.func-button {
+  @extend %button-base;
+
+  overflow: visible;
+  min-width: 0;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  text-overflow: inherit;
+  text-transform: inherit;
+  white-space: normal;
+
+  &:hover {
+    // Styling needed
+  }
+
+  &:focus {
+    // Styling needed
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+/*
+  • Icon Button
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.icon-button {
+  @extend %button-base;
+
+  overflow: visible;
+  min-width: rem(40);
+  min-height: rem(40);
+  padding: 0;
+  border-radius: rem(40);
+  background: none;
+  line-height: inherit;
+  white-space: nowrap;
+  transition: background 0.2s;
+
+  &:hover,
+  &:focus {
+    //background: rgba(get-color('black'), 0.05);
+  }
+}
+
+/*
+  • Vendor Specific
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+// These won't work in multi-selectors.
+//
+// For ex:
+//
+// .button, input[type="file"]::-webkit-file-upload-button
+//
+// won't work and will even cancel .button
+//
+// @extend won't work either since it compiles
+// to a multi-selector.
+// So you basically have to duplicate all the styles in
+// each of the followings if you need them.
+
+// input[type="file"]::-webkit-file-upload-button {}
+
+// input[type="file"]::-ms-browse {}

@@ -1,0 +1,80 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.bg-map {
+  width: 100%;
+
+  .ratio-block {
+    --block-ratio: 211.466667%;
+
+    &::after {
+      content: '';
+      left: 0;
+      top: 0;
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: linear-gradient(180deg, #fff 0%, rgba(251, 250, 249, 0) 50.99%, #fff 100%);
+    }
+  }
+}
+
+.centre-de-formation-component {
+  padding: rem(60) 0;
+
+  .cards {
+    & > *:not(:last-child) {
+      margin-bottom: rem(24);
+    }
+
+    .card-wrap {
+      padding: rem(32);
+      border-radius: 10px 60px 10px 10px;
+    }
+  }
+}
+
+@include down('md') {
+  .section {
+    background-position: 60% -1091%;
+  }
+}
+
+@include up('sm') {
+  .bg-map {
+    .ratio-block {
+      --block-ratio: 64.3165468%;
+    }
+  }
+}
+
+@include up('lg') {
+  .centre-de-formation-component {
+      padding: rem(220) 0;
+
+    .cards {
+      .card-wrap {
+        padding: rem(34);
+      }
+    }
+  }
+}

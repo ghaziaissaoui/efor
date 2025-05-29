@@ -1,0 +1,88 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/variables' as gs-var;
+@use 'front/abstract/grid-system/functions' as gs-func;
+@use 'front/abstract/grid-system/mixins' as gs-mix;
+
+
+.u-fit-content {
+  flex: 0 0 auto !important;
+  width: fit-content !important;
+  min-width: 0 !important;
+  max-width: none !important;
+}
+
+.u-fill-space {
+  flex: 1 0 0% !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+.u-full-width {
+  flex: 0 0 100% !important;
+  width: 100% !important;
+  min-width: 100% !important;
+  max-width: 100% !important;
+}
+
+.u-full-height {
+  flex: 0 0 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: 100% !important;
+}
+
+.u-width-100\% {
+  width: 100% !important;
+}
+
+.u-width-auto {
+  width: auto !important;
+}
+
+.u-height-100\% {
+  height: 100% !important;
+}
+
+@each $-slug, $-obj in gs-var.$breakpoints {
+  $-prefix: gs-func.get-breakpoint-prefix($-obj);
+  $-value: gs-func.get-breakpoint-value($-obj);
+
+  @include gs-mix.up($-value) {
+    .#{$-prefix}u-fit-content {
+      flex: 0 0 auto !important;
+      width: auto !important;
+      min-width: 0 !important;
+      max-width: none !important;
+    }
+
+    .#{$-prefix}u-fill-space {
+      flex: 1 0 0% !important;
+      width: auto !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+    }
+
+    .#{$-prefix}u-full-width {
+      flex: 0 0 100% !important;
+      width: 100% !important;
+      min-width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    .#{$-prefix}u-full-height {
+      flex: 0 0 100% !important;
+      height: 100% !important;
+      min-height: 100% !important;
+      max-height: 100% !important;
+    }
+
+    .#{$-prefix}u-width-100\% {
+      width: 100% !important;
+    }
+
+    .#{$-prefix}u-height-100\% {
+      height: 100% !important;
+    }
+  }
+}

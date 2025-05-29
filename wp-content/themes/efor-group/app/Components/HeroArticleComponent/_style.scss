@@ -1,0 +1,49 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+  • Large Breakpoint Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.hero-article-component {
+  &__text {
+    & > *:not(:last-child) {
+      margin-bottom: rem(20);
+    }
+  }
+
+  &__img {
+    border-radius: rem(60) 0 0 0;
+    overflow: hidden;
+    margin-top: rem(64);
+    transform: translateX(100%);
+    transition: transform 0.8s;
+  }
+}
+
+/*
+  • Large Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include up(large) {
+  .hero-article-component {
+    &__img {
+      border-radius: 140px 0 0 20px;
+    }
+  }
+}

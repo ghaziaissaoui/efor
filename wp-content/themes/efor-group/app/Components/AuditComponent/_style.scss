@@ -1,0 +1,75 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.audit-component {
+  padding-bottom: rem(60);
+  padding-top: rem(60);
+
+  @include up('md') {
+    &__text {
+      &--left {
+        padding-right: calc(100px - var(--gs-half-gutter));
+      }
+
+      &--right {
+        padding-left: calc(100px - var(--gs-half-gutter));
+      }
+    }
+  }
+
+  @include up('lg') {
+    padding-bottom: rem(140);
+    padding-top: rem(140);
+
+    &__text {
+      &--left {
+        padding-right: calc(160px - var(--gs-half-gutter));
+      }
+
+      &--right {
+        padding-left: calc(160px - var(--gs-half-gutter));
+      }
+    }
+  }
+
+  div {
+    .ratio-block {
+      img {
+        border-radius: 10px 10px 60px 10px;
+      }
+    }
+
+    @include up('md') {
+      &:last-of-type {
+        .ratio-block {
+          img {
+            border-radius: 10px 10px 10px 60px;
+          }
+        }
+      }
+    }
+
+    @include down('md') {
+      .ratio-block {
+        margin-bottom: rem(40);
+      }
+    }
+  }
+}

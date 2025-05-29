@@ -1,0 +1,205 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+  • Medium Breakpoint Styles
+  • Large Breakpoint Styles
+  • Wide Breakpoint Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.direction-slider-component {
+  display: block;
+
+  ul {
+    list-style: none;
+  }
+
+  .direction-header {
+    &__arrows {
+      height: auto;
+      justify-content: flex-end;
+      z-index: 4;
+
+      .direction-arrow-prev {
+        transform: rotateY(180deg);
+        margin-right: rem(24);
+      }
+    }
+  }
+
+  .direction-slider {
+    margin-top: rem(40);
+
+    .swiper-slide {
+      padding-right: 0;
+      padding-left: 0;
+      flex: 0 0 auto;
+
+      .content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        &::before {
+          position: absolute;
+          content: '';
+          left: 0;
+          top: 0;
+          width: 100%;
+          z-index: 1;
+          height: 100%;
+          border-radius: rem(6.90867) rem(41.452) rem(6.90867) rem(6.90867);
+          display: inline-block;
+          background: linear-gradient(180deg, rgba(0, 0, 0, 0) 69.79%, rgba(0, 0, 0, 0.7) 100%);
+          opacity: 1;
+          transition: opacity 0.5s;
+        }
+
+        img {
+          border-radius: rem(6.90867) rem(41.452) rem(6.90867) rem(6.90867);
+        }
+
+        .direction {
+          z-index: 2;
+          position: absolute;
+          width: 100%;
+          left: 0;
+          bottom: rem(16);
+
+          &__name {
+            &--small {
+              font-size: rem(18);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*
+  • Medium Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include down('medium') {
+  .direction-slider-component {
+    margin-bottom: rem(100);
+
+    .direction-header {
+      &__arrows {
+        position: absolute;
+        left: 0;
+        bottom: - rem(100);
+        justify-content: center;
+      }
+
+      &__title {
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+@include up('medium') {
+  .direction-slider-component {
+    .direction-slider {
+      margin-top: rem(80);
+
+      .swiper-slide {
+        .content {
+          .direction {
+            bottom: rem(24);
+
+            &__name {
+              &--small {
+                font-size: rem(10);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/*
+  • Large Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include up('large') {
+  .direction-slider-component {
+    .direction-slider {
+      .swiper-slide {
+        .content {
+          .talent {
+            &__name {
+              &--small {
+                font-size: rem(14);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*
+  • Wide Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include up('wide') {
+  .direction-slider-component {
+    .direction-slider {
+      .swiper-slide {
+        .content {
+          .direction {
+            &__name {
+              &--small {
+                font-size: rem(18);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .direction-slider-component {
+    .direction-slider {
+      .swiper-slide {
+        .content {
+          .direction {
+            &__name {
+              &--small {
+                font-size: rem(28);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

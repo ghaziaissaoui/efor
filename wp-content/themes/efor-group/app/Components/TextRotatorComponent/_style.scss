@@ -1,0 +1,77 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+  • Large Breakpoint Styles
+  • Animations
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.text-rotator-component {
+  display: block;
+
+  .textRotator {
+    margin-bottom: rem(42);
+  }
+
+  .swiper-slide {
+    height: auto !important;
+  }
+
+  &__title {
+    padding-bottom: rem(10);
+  }
+
+  &__number {
+    font-size: rem(12);
+    line-height: 1;
+  }
+}
+
+/*
+  • Wide Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include up('wide') {
+  .text-rotator-component {
+    .textRotator {
+      margin-bottom: 0;
+    }
+
+    &__title {
+      padding-bottom: rem(20);
+    }
+
+    &__number {
+      font-size: rem(25);
+    }
+  }
+}
+
+/*
+  • Animations
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@keyframes fadein {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

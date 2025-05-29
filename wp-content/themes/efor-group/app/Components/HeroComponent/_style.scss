@@ -1,0 +1,209 @@
+@use "front/config/sass" as *;
+@use "front/abstract/grid-system/mixins" as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+  • Medium Breakpoint Styles
+  • Large Breakpoint Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.hero-component {
+  position: relative;
+  padding-top: rem(80);
+  overflow: hidden;
+
+  // Block text image sided + Block text no image
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    & > *:not(:last-child) {
+      margin-bottom: rem(34);
+    }
+  }
+
+  &__buttons {
+    flex-wrap: wrap;
+    gap: rem(24);
+
+    @include down("lg") {
+      & > * {
+        margin-bottom: rem(24);
+        margin-right: rem(24);
+      }
+    }
+
+    .button {
+      @include up("md") {
+        white-space: normal;
+      }
+
+      svg {
+        min-width: rem(24);
+      }
+    }
+
+    @include up("wd") {
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__img {
+    border-radius: rem(60) 0 0 0;
+    overflow: hidden;
+    margin-top: rem(64);
+    transform: translateX(100%);
+    transition: transform 0.8s;
+  }
+
+  // Full image block text + Full image without block text
+
+  &__full {
+    padding-top: 0;
+    overflow: inherit;
+
+    &-img {
+      margin: 0 -10px;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: inline-block;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 43.03%, rgba(0, 0, 0, 0.5) 100%);
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        border-radius: rem(10) rem(10) rem(70) rem(10);
+      }
+
+      img {
+        border-radius: rem(10) rem(10) rem(70) rem(10);
+      }
+    }
+
+    &-footer {
+      width: 100%;
+      z-index: 2;
+
+      .full-footer-right {
+        & > *:not(:last-child) {
+          margin-bottom: rem(24);
+        }
+      }
+    }
+  }
+}
+
+/*
+  • Medium Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include up(medium) {
+  .full__image {
+    padding-left: var(--gs-margins);
+    padding-right: var(--gs-margins);
+  }
+
+  .hero-component {
+    &__img {
+      margin-left: 9.8%; // offset image
+      margin-top: 0;
+      transform: translateX(100%);
+    }
+  }
+}
+
+@include down("lg") {
+  .hero-component {
+    &__text {
+      padding-left: var(--gs-margins);
+      padding-right: var(--gs-margins);
+    }
+
+    &__full {
+      & > *:not(:last-child) {
+        margin-bottom: rem(40);
+      }
+
+      &-img {
+        .hero-component__title {
+          position: absolute;
+          left: 0;
+          bottom: rem(20);
+          text-align: center;
+          z-index: 2;
+        }
+      }
+    }
+  }
+}
+
+/*
+  • Large Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include up(large) {
+  .hero-component {
+    &__text {
+      & > *:not(:last-child) {
+        margin-bottom: rem(38);
+      }
+    }
+
+    &__buttons {
+      & > *:not(:last-child) {
+        margin-bottom: 0;
+      }
+    }
+
+    &__img {
+      border-radius: 140px 0 0 20px;
+    }
+
+    &__full {
+      &-img {
+        margin: 0 -40px;
+
+        .ratio-block {
+          --block-ratio: calc(52.9411765% - var(--header-height-desktop) - 30px);
+        }
+      }
+
+      &-footer {
+        position: absolute;
+        left: 0;
+        bottom: rem(40);
+
+        .full-footer-right {
+          background: get-color("white");
+          border-radius: 20px 20px 90px 20px;
+          padding: rem(40);
+
+          & > *:not(:last-child) {
+            margin-bottom: rem(40);
+          }
+        }
+      }
+    }
+  }
+}

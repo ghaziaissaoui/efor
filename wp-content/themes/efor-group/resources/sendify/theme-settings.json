@@ -1,0 +1,25 @@
+{
+  "body": {
+    "label": "Paramètre du corps de l'email",
+    "settings": [
+      {
+        "id": "email-width",
+        "type": "slider",
+        "label": "Largeur de l'email",
+        "default": "600",
+        "config": {
+          "type": "px",
+          "min": 600,
+          "max": 960,
+          "step": 10
+        }
+      },
+      {
+        "id": "email-background",
+        "type": "color",
+        "label": "Couleur de fond de l'email",
+        "default": "#fff"
+      }
+    ]
+  }
+}

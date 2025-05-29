@@ -1,0 +1,92 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+@use 'front/components/cards/cards' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.listing-component {
+    button.load-more {
+      color: get-color('gold');
+    }
+
+    .card-redirect {
+    position: relative;
+    height: 100%;
+
+    .ratio-block {
+      height: 100%;
+
+      &::after {
+        content: '';
+        background : linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border-radius: 10px 80px 10px 10px;
+        padding: 0;
+        z-index: 1;
+      }
+
+      img {
+        border-radius: 10px 80px 10px 10px;
+      }
+    }
+
+    &__content {
+      z-index: 1;
+      position: absolute;
+      bottom: rem(30);
+      left: 50%;
+      transform: translate(-50%);
+      padding: 0 rem(30);
+
+      .button {
+        max-width: 100%;
+
+        span {
+          white-space: normal;
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+
+@include up(medium) {
+  .listing-component {
+    button.load-more {
+      color: get-color('black-graphite');
+    }
+  }
+}
+
+@include up(large) {
+  .listing-component {
+    .card-redirect {
+      &__content {
+        padding: 0 rem(40);
+
+        p {
+          max-width: rem(218);
+        }
+      }
+    }
+  }
+}

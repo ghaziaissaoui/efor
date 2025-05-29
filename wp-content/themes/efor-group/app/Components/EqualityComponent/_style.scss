@@ -1,0 +1,96 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+  • Medium Breakpoint Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.equality-component {
+  display: block;
+  overflow: hidden;
+
+  .equality__title {
+    margin-bottom: rem(40);
+  }
+
+  .image {
+    &__left,
+    &__right {
+      transition: transform 0.8s;
+
+      img {
+        border-radius: rem(4.92647) rem(4.92647) rem(29.5588) rem(4.92647)
+      }
+    }
+
+    &__left {
+      transform: translateX(-110%);
+    }
+
+    &__right {
+      transform: translateX(110%);
+      margin-top: rem(30);
+    }
+  }
+
+  &--no-margin {
+    margin-bottom: rem(-1) !important;
+  }
+}
+
+/*
+  • Medium Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include up('medium') {
+  .equality-component {
+    .image {
+      &__left,
+      &__right {
+        img {
+          border-radius: rem(20) rem(20) rem(120) rem(20);
+        }
+      }
+
+      &__left {
+        transform: translateX(-150%);
+        padding-right: rem(40);
+      }
+
+      &__right {
+        transform: translateX(150%);
+        margin-top: rem(70);
+        padding-left: rem(40);
+      }
+    }
+  }
+}
+
+@include up('wide') {
+  .equality-component {
+    .equality__images {
+      margin-left: calc(((100vw - var(--gs-max-width)) / 2));
+      margin-right: calc(((100vw - var(--gs-max-width)) / 2) + var(--gs-width-sidebar));
+      max-width: var(--gs-max-width);
+    }
+
+    .equality__title {
+      margin-bottom: rem(100);
+    }
+  }
+}

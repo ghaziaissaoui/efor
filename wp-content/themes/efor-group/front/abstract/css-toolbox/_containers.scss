@@ -1,0 +1,112 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/variables' as gs-var;
+@use 'front/abstract/grid-system/functions' as gs-func;
+@use 'front/abstract/grid-system/mixins' as gs-mix;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Simple toggle classes
+  • Templaty toggle classes
+*/
+
+/*
+  • Simple toggle classes
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.u-flex-row {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.u-flex-row-reverse {
+  display: flex !important;
+  flex-direction: row-reverse !important;
+}
+
+.u-flex-column {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.u-flex-column-reverse {
+  display: flex !important;
+  flex-direction: column-reverse !important;
+}
+
+.u-flex-wrapping {
+  flex-wrap: wrap !important;
+}
+
+.u-flex-nowrap {
+  flex-wrap: nowrap !important;
+}
+
+@each $-slug, $-obj in gs-var.$breakpoints {
+  $-prefix: gs-func.get-breakpoint-prefix($-obj);
+  $-value: gs-func.get-breakpoint-value($-obj);
+
+  @include gs-mix.up($-value) {
+    .#{$-prefix}u-flex-row {
+      display: flex !important;
+      flex-direction: row !important;
+    }
+
+    .#{$-prefix}u-flex-row-reverse {
+      display: flex !important;
+      flex-direction: row-reverse !important;
+    }
+
+    .#{$-prefix}u-flex-column {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    .#{$-prefix}u-flex-column-reverse {
+      display: flex !important;
+      flex-direction: column-reverse !important;
+    }
+
+    .#{$-prefix}u-flex-wrapping {
+      flex-wrap: wrap !important;
+    }
+
+    .#{$-prefix}u-flex-nowrap {
+      flex-wrap: nowrap !important;
+    }
+  }
+}
+
+/*
+  • Templaty toggle classes
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.u-cross-centered-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.u-cross-stretched-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.u-cross-centered-col {
+  flex-direction: column ;
+  display: flex;
+  justify-content: center;
+  align-items: center ;
+}
+
+.u-cross-stretched-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}

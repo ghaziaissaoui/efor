@@ -1,0 +1,613 @@
+@use 'front/config/sass' as *;
+
+/*
+  Warning
+  ---------- ---------- ---------- ---------- ----------
+  Warning: browsers seem to ignore
+  grouped style declarations of non-standard
+  pseudo-elements.
+
+  For ex, these will work:
+
+  input[type="range"]::-webkit-slider-thumb { color: pink }
+  input[type="range"]::-moz-range-thumb { color: pink }
+  input[type="range"]::-ms-thumb { color: pink }
+
+  But these will be ignored:
+
+  input[type="range"]::-webkit-slider-thumb,
+  input[type="range"]::-moz-range-thumb,
+  input[type="range"]::-ms-thumb { color: pink }
+*/
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Variables(s)
+  • Placeholder values
+  • Label
+  • Fieldset
+  • Every form widgets
+  • Every text-based form widget
+  • Number
+  • Password
+  • Search
+  • Text
+  • Checkbox
+  • Radio
+  • Select
+  • File
+  • Range
+  • Color
+  • Progress
+  • Meter
+*/
+
+/*
+  • Variable(s)
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+$-label-color: get-color(black-graphite);
+$placeholder-color: get-color(gray-10);
+$value-color: get-color(black-graphite);
+
+$widget-height: rem(60);
+
+/*
+  • Placeholder values
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+::-webkit-input-placeholder,
+::-ms-input-placeholder,
+::-moz-placeholder,
+::placeholder {
+  color: $placeholder-color;
+}
+
+/*
+  • Label
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+label,
+.label {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  & + label,
+  & + .label {
+    margin-left: rem(4);
+    color: $value-color;
+  }
+}
+
+/*
+  • Fieldset
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+fieldset {
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+
+legend {
+  padding: 0 rem(16);
+  margin-left: rem(-16);
+  color: get-color(black-graphite);
+}
+
+/*
+  • Every form widgets
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+button,
+input,
+meter,
+progress,
+select,
+textarea {
+  display: inline-block;
+  vertical-align: middle;
+  box-sizing: border-box;
+  outline: 0;
+  box-shadow: none;
+  color: $font-default-color;
+  font-family: $font-default-stack;
+  font-size: $font-default-size;
+  font-style: $font-default-style;
+  font-weight: $font-default-weight;
+  line-height: $font-default-line-height;
+  letter-spacing: $font-default-letter-spacing;
+  text-decoration: $font-default-text-decoration;
+  text-transform: $font-default-text-transform;
+
+  &:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+}
+
+/*
+  • Every text-based form widget
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+textarea,
+input[type="date"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"] {
+  height: $widget-height;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background:
+    linear-gradient(to top, currentColor 2px, transparent 0),
+    linear-gradient(to top, transparent 1px, currentColor 1px, currentColor 1px, transparent 2px);
+  background-repeat: no-repeat;
+  background-size: 0 100%, 100% 100%;
+  transition: background-size 0.3s;
+
+  &::placeholder {
+    color: rgba(#000, 0.3);
+  }
+
+  &:hover:not(:disabled) {
+    background-size: 100% 100%, 100% 100%;
+  }
+
+  &:focus {
+    background-size: 100% 100%, 100% 100%;
+  }
+}
+
+textarea {
+  // 1. line-height * number of lines + (padding-top + padding-bottom);
+
+  vertical-align: top;
+  max-width: 100%;
+  height: (1.4rem * 5 + rem(16 + 16)); // 1
+  padding: rem(16) 0;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/*
+  • Number
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+input[type="number"] {
+  &::-webkit-inner-spin-button {
+    /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+  }
+
+  &::-webkit-outer-spin-button {
+    /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+  }
+}
+
+/*
+  • Password
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+input[type="password"] {
+  &::-ms-reveal {
+    /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+  }
+}
+
+/*
+  • Search
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+input[type="search"] {
+  &::-webkit-search-results-button {
+    /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+  }
+
+  &::-webkit-search-cancel-button {
+    /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+  }
+}
+
+/*
+  • Text
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+input[type="text"] {
+  &::-ms-clear {
+    /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+  }
+}
+
+/*
+  • Checkbox
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+input[type="checkbox"] {
+  &::-ms-check {
+    /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+  }
+}
+
+/*
+  • Radio
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+input[type="radio"] {
+  &::-ms-check {
+    /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+  }
+}
+
+/*
+  • Select
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+select {
+  height: $widget-height;
+
+  &::-ms-expand {
+    /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+  }
+
+  &::-ms-value {
+    /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+  }
+}
+
+option {
+  /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+}
+
+optgroup {
+  /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+}
+
+/*
+  • File
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+input[type="file"] {
+  &::-webkit-file-upload-button {
+    // See lib/css-top-level/partials/_buttons.scss
+  }
+
+  &::-ms-browse {
+    // See lib/css-top-level/partials/_buttons.scss
+  }
+}
+
+/*
+  • Range
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@mixin range-track {
+  height: rem(8);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: get-color(color-grey);
+}
+
+@mixin range-track-hover {
+  background: get-color(color-grey);
+}
+
+@mixin range-track-focus {
+  background: get-color(color-grey);
+}
+
+@mixin range-thumb {
+  width: rem(8);
+  height: rem(24);
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  box-shadow: 0 0 1px 0 rgba(#001e28, 0.2), 0 1px 2px 0 rgba(#000a14, 0.2);
+}
+
+@mixin range-thumb-hover {
+  /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+}
+
+@mixin range-thumb-focus {
+  /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+}
+
+@mixin range-fill {
+  height: rem(8);
+  border-radius: 0;
+  background: get-color(color-primary);
+}
+
+@mixin range-fill-hover {
+  /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+}
+
+@mixin range-fill-focus {
+  /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  height: rem(28);
+  background: transparent;
+
+  // The track
+
+  &::-webkit-slider-runnable-track {
+    @include range-track;
+  }
+
+  &::-moz-range-track {
+    @include range-track;
+  }
+
+  &::-ms-track {
+    @include range-track;
+
+    color: transparent;
+  }
+
+  // The thumb
+
+  &::-webkit-slider-thumb {
+    @include range-thumb;
+
+    -webkit-appearance: none;
+    margin-top: rem(-8);
+  }
+
+  &::-moz-range-thumb {
+    @include range-thumb;
+  }
+
+  &::-ms-thumb {
+    @include range-thumb;
+
+    margin-top: rem(0);
+  }
+
+  // The filled portion of the track
+  // Firefox and IE/Edge only
+
+  &::-moz-range-progress {
+    @include range-fill;
+  }
+
+  &::-ms-fill-lower {
+    @include range-fill;
+  }
+
+  // The empty portion of the track
+  // IE/Edge only
+
+  &::-ms-fill-upper {
+    /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+  }
+
+  // IE/Edge only
+
+  &::-ms-tooltip {
+    /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+  }
+
+  &::-ms-ticks-before {
+    /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+  }
+
+  &::-ms-ticks-after {
+    /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+  }
+}
+
+input[type="range"]:hover {
+  // The track
+
+  &::-webkit-slider-runnable-track {
+    @include range-track-hover;
+  }
+
+  &::-moz-range-track {
+    @include range-track-hover;
+  }
+
+  &::-ms-track {
+    @include range-track-hover;
+  }
+
+  // The thumb
+
+  &::-webkit-slider-thumb {
+    @include range-thumb-hover;
+  }
+
+  &::-moz-range-thumb {
+    @include range-thumb-hover;
+  }
+
+  &::-ms-thumb {
+    @include range-thumb-hover;
+  }
+
+  // The filled portion of the track
+  // Firefox and IE/Edge only
+
+  &::-moz-range-progress {
+    @include range-fill-hover;
+  }
+
+  &::-ms-fill-lower {
+    @include range-fill-hover;
+  }
+}
+
+input[type="range"]:focus {
+  // The track
+
+  &::-webkit-slider-runnable-track {
+    @include range-track-focus;
+  }
+
+  &::-moz-range-track {
+    @include range-track-focus;
+  }
+
+  &::-ms-track {
+    @include range-track-focus;
+  }
+
+  // The thumb
+
+  // Safari doesn't keep focus when releasinig mouse button
+  &::-webkit-slider-thumb {
+    @include range-thumb-focus;
+  }
+
+  &::-moz-range-thumb {
+    @include range-thumb-focus;
+  }
+
+  &::-ms-thumb {
+    @include range-thumb-focus;
+  }
+
+  // The filled portion of the track
+  // Firefox and IE/Edge only
+
+  &::-moz-range-progress {
+    @include range-fill-focus;
+  }
+
+  &::-ms-fill-lower {
+    @include range-fill-focus;
+  }
+}
+
+/*
+  • Color
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+input[type="color"] {
+  width: rem(40);
+  height: rem(40);
+  padding: rem(8);
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background: get-color(color-grey);
+}
+
+input[type="color"]:hover {
+  box-shadow: 0 0 0 2px get-color(color-primary);
+}
+
+input[type="color"]:focus {
+  box-shadow: 0 0 0 2px get-color(color-primary);
+}
+
+/*
+  • Progress
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@mixin progress-track {
+  height: rem(4);
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  background: #fff;
+}
+
+@mixin progress-fill {
+  border: 0;
+  border-radius: 0;
+  background: get-color(color-primary);
+}
+
+progress {
+  &::-webkit-progress-inner-element {
+    /* stylelint-disable-line -- Ignoring empty line. Remove if you add some styles */
+  }
+
+  // The track
+
+  @include progress-track;
+
+  -webkit-appearance: none;
+
+  &::-webkit-progress-bar {
+    @include progress-track;
+  }
+
+  // The filled portion of the track
+
+  &::-webkit-progress-value {
+    @include progress-fill;
+  }
+
+  &::-moz-progress-bar {
+    @include progress-fill;
+  }
+
+  &::-ms-fill {
+    @include progress-fill;
+  }
+}
+
+/*
+  • Meter
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+meter {
+  -webkit-appearance: none;
+  height: rem(16);
+
+  &::-webkit-meter-inner-element {
+    display: block;
+  }
+
+  &::-webkit-meter-bar {
+    background: get-color(color-grey);
+  }
+
+  &::-webkit-meter-optimum-value {
+    background: green;
+  }
+
+  &::-webkit-meter-suboptimum-value {
+    background: orange;
+  }
+
+  &::-webkit-meter-even-less-good-value {
+    background: red;
+  }
+}

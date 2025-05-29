@@ -1,0 +1,64 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.secteurs-component {
+  display: block;
+  position: relative;
+
+  .ratio-block {
+    img {
+      filter: brightness(0.7);
+      object-fit: cover;
+    }
+  }
+
+  .wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: rem(320);
+    width: 100%;
+
+    @include down('sm') {
+      p {
+        line-height: 120%;
+        font-size: rem(14);
+      }
+
+      h2 {
+        line-height: 100%;
+      }
+    }
+
+    @include up('md') {
+      max-width: rem(435);
+    }
+
+    @include up('lg') {
+      max-width: rem(759);
+
+      p {
+        max-width: rem(629);
+        margin: 0 auto;
+      }
+    }
+  }
+}

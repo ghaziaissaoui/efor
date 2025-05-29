@@ -1,0 +1,68 @@
+{
+    "key": "group_680ba108e3597",
+    "title": "Coordonnées du continent",
+    "fields": [
+        {
+            "key": "field_680ba109c3c2b",
+            "label": "Adresse",
+            "name": "lat_lng",
+            "aria-label": "",
+            "type": "google_map",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "center_lat": "-37,81",
+            "center_lng": "144,96",
+            "zoom": "",
+            "height": "",
+            "translations": "copy_once"
+        },
+        {
+            "key": "field_681dbd1355907",
+            "label": "Ordre",
+            "name": "ordre",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "translations": "copy_once",
+            "min": "",
+            "max": "",
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "continent"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "show_in_rest": 0,
+    "modified": 1746779430
+}

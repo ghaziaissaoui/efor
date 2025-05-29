@@ -1,0 +1,315 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
+@use 'front/config/sass' as *;
+@use './variables';
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Breakpoints
+  • Extenders
+*/
+
+/*
+  • Breakpoints
+  ---------- ---------- ---------- ----------
+*/
+
+@mixin up($from) {
+  @if meta.type-of($from) == string {
+    $from: map.get(map.get(variables.$breakpoints, $from), 'value');
+    @media screen and (min-width: $from) {
+      @content;
+    }
+  }
+  @else if meta.type-of($from) == number {
+    @media screen and (min-width: $from) {
+      @content;
+    }
+  }
+  @else {
+    @content;
+  }
+}
+
+@mixin down($from) {
+  @if meta.type-of($from) == string {
+    $from: map.get(map.get(variables.$breakpoints, $from), 'value');
+    @media screen and (max-width: $from) {
+      @content;
+    }
+  }
+  @else if meta.type-of($from) == number {
+    @media screen and (max-width: $from) {
+      @content;
+    }
+  }
+  @else {
+    @content;
+  }
+}
+
+@mixin between($min, $max) {
+  @if meta.type-of($min) == string {
+    $min: map.get(map.get(variables.$breakpoints, $min), 'value');
+  }
+
+  @if meta.type-of($max) == string {
+    $max: map.get(map.get(variables.$breakpoints, $max), 'value');
+  }
+
+  @if $min == null or meta.type-of($min) != number {
+    @include down($max) {
+      @content;
+    }
+  }
+  @else if $max == null or meta.type-of($max) != number {
+    @include up($min) {
+      @content;
+    }
+  }
+  @else {
+    @media screen and (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  }
+}
+
+/*
+  • Extenders
+  ---------- ---------- ---------- ----------
+*/
+
+/*
+  TODO:
+  Fix max-width value when using config variables
+*/
+
+@mixin is-container($as-modifier: false, $margins: true, $max-width: true) {
+  @if $as-modifier == false {
+    box-sizing: border-box;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @if $margins {
+    @if meta.type-of($margins) == number {
+      padding-left: $margins;
+      padding-right: $margins;
+    }
+    @else if meta.type-of($margins) == bool {
+      padding-left: map.get(variables.$base, 'margins');
+      padding-right: map.get(variables.$base, 'margins');
+    }
+    @else if meta.type-of($margins) == map {
+      $-first-value: list.nth(map.values($margins), 1);
+
+      padding-left: $-first-value;
+      padding-right: $-first-value;
+    }
+  }
+
+  @if $max-width {
+    @if meta.type-of($max-width) == number {
+      max-width: $max-width;
+    }
+    @else if meta.type-of($max-width) == bool {
+      max-width: map.get(variables.$base, 'max-width');
+    }
+    @else if meta.type-of($max-width) == map {
+      $-first-value: list.nth(map.values($max-width), 1);
+
+      max-width: $-first-value;
+    }
+  }
+
+  @if meta.type-of($margins) == bool or meta.type-of($max-width) == bool {
+    @each $-slug, $-obj in variables.$breakpoints {
+      $-virtual: if(map.has-key($-obj, 'virtual'), map.get($-obj, 'virtual'), false);
+
+      @if $-virtual != true {
+        $-value: map.get($-obj, 'value');
+        $-margins: map.get($-obj, 'margins');
+        $-max-width: map.get($-obj, 'max-width');
+
+        @include up($-value) {
+          @if meta.type-of($margins) == bool and $margins and $-margins {
+            padding-left: $-margins;
+            padding-right: $-margins;
+          }
+
+          @if meta.type-of($max-width) == bool and $max-width and $-max-width {
+            max-width: $-max-width;
+          }
+        }
+      }
+    }
+  }
+
+  @if meta.type-of($margins) == map {
+    $-first-key: list.nth(map.keys($margins), 1);
+    $margins: map.remove($margins, $-first-key);
+
+    @each $-from, $-margins in $margins {
+      @include up($-from) {
+        padding-left: $-margins;
+        padding-right: $-margins;
+      }
+    }
+  }
+
+  @if meta.type-of($max-width) == map {
+    $-first-key: list.nth(map.keys($max-width), 1);
+    $max-width: map.remove($max-width, $-first-key);
+
+    @each $-from, $-max-width in $max-width {
+      @include up($-from) {
+        max-width: $-max-width;
+      }
+    }
+  }
+}
+
+@mixin is-row($as-modifier: false, $gutters: true) {
+  @if $as-modifier == false {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    align-content: flex-start;
+    box-sizing: border-box;
+  }
+
+  @if $gutters {
+    @if meta.type-of($gutters) == number {
+      margin-left: (-1 * $gutters / 2);
+      margin-right: (-1 * $gutters / 2);
+    }
+    @else if meta.type-of($gutters) == bool {
+      margin-left: (-1 * map.get(variables.$base, "gutters") / 2);
+      margin-right: (-1 * map.get(variables.$base, "gutters") / 2);
+
+      @each $-slug, $-obj in variables.$breakpoints {
+        $-virtual: if(map.has-key($-obj, "virtual"), map.get($-obj, "virtual"), false);
+
+        @if $-virtual != true {
+          $-value: map.get($-obj, "value");
+          $-gutters: map.get($-obj, "gutters");
+
+          @include up($-value) {
+            @if $-gutters {
+              margin-left: (-1 * $-gutters / 2);
+              margin-right: (-1 * $-gutters / 2);
+            }
+          }
+        }
+      }
+    }
+    @else if meta.type-of($gutters) == map {
+      $-first-value: list.nth(map.values($gutters), 1);
+
+      margin-left: (-1 * $-first-value / 2);
+      margin-right: (-1 * $-first-value / 2);
+
+      $-first-key: list.nth(map.keys($gutters), 1);
+      $gutters: map.remove($gutters, $-first-key);
+
+      @each $-from, $-gutters in $gutters {
+        @include up($-from) {
+          margin-left: (-1 * $-gutters / 2);
+          margin-right: (-1 * $-gutters / 2);
+        }
+      }
+    }
+  }
+}
+
+@mixin is-column($as-modifier: false, $n: $number-of-columns, $gutters: true) {
+  @if $as-modifier == false {
+    box-sizing: border-box;
+  }
+
+  @if $gutters {
+    @if meta.type-of($gutters) == number {
+      padding-left: ($gutters / 2);
+      padding-right: ($gutters / 2);
+    }
+    @else if meta.type-of($gutters) == bool {
+      padding-left: (map.get(variables.$base, "gutters") / 2);
+      padding-right: (map.get(variables.$base, "gutters") / 2);
+
+      @each $-slug, $-obj in variables.$breakpoints {
+        $-virtual: if(map.has-key($-obj, "virtual"), map.get($-obj, "virtual"), false);
+
+        @if $-virtual != true {
+          $-value: map.get($-obj, "value");
+          $-gutters: map.get($-obj, "gutters");
+
+          @include up($-value) {
+            @if $-gutters {
+              padding-left: ($-gutters / 2);
+              padding-right: ($-gutters / 2);
+            }
+          }
+        }
+      }
+    }
+    @else if meta.type-of($n) == map {
+      $-first-value: list.nth(map.values($gutters), 1);
+
+      padding-left: ($-first-value / 2);
+      padding-right: ($-first-value / 2);
+
+      $-first-key: list.nth(map.keys($gutters), 1);
+      $gutters: map.remove($gutters, $-first-key);
+
+      @each $-from, $-gutters in $gutters {
+        @include up($-from) {
+          padding-left: ($-gutters / 2);
+          padding-right: ($-gutters / 2);
+        }
+      }
+    }
+  }
+
+  @if $n == 'auto' {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
+  }
+  @else if meta.type-of($n) == number {
+    flex: 0 0 ((100% / $number-of-columns) * $n);
+    width: 100%;
+    max-width: (100% / $number-of-columns) * $n;
+  }
+  @else if meta.type-of($n) == map {
+    $-first-value: list.nth(map.values($n), 1);
+
+    flex: 0 0 ((100% / $number-of-columns) * $-first-value);
+    width: 100%;
+    max-width: (100% / $number-of-columns) * $-first-value;
+
+    $-first-key: list.nth(map.keys($n), 1);
+    $n: map.remove($n, $-first-key);
+
+    @each $-from, $-n in $n {
+      @include up($-from) {
+        @if $-n == 'auto' {
+          flex-basis: auto;
+          width: 'auto';
+          max-width: 100%;
+        }
+        @else if meta.type-of($-n) == number {
+          flex-basis: ((100% / $number-of-columns) * $-n);
+          max-width: ((100% / $number-of-columns) * $-n);
+        }
+      }
+    }
+  }
+}
+
+@mixin column-width($n) {
+  flex-basis: (100% / $number-of-columns) * $n;
+  max-width: (100% / $number-of-columns) * $n;
+}

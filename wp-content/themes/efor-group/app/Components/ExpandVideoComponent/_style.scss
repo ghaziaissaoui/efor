@@ -1,0 +1,63 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include down('small') {
+  .expand-video-component {
+    .expand-video {
+      .ratio-block {
+        height: rem(300);
+      }
+    }
+  }
+}
+
+@include up('medium') {
+  .expand-video-component {
+    .ratio-block {
+      height: rem(500);
+    }
+
+    .expand-video {
+
+      .ratio-block {
+        --block-ratio: calc(177.77777778%);
+      }
+    }
+  }
+}
+
+@include up('wide') {
+  .expand-video-component {
+    .ratio-block {
+      height: rem(720);
+    }
+
+    padding-top: 37px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .expand-video-component {
+    .ratio-block {
+      height: rem(780);
+    }
+    display: block;
+  }
+}

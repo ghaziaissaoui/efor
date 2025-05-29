@@ -1,0 +1,198 @@
+@use 'sass:math';
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+
+/*
+  • Headings and body
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.t-h {
+  font-family: get-font-stack('General-Sans');
+  font-weight: 400;
+
+  &1 {
+    @extend .t-h;
+
+    font-size: rem(44);
+    line-height: 116%;
+
+    @include up('large') {
+      font-size: rem(60);
+      line-height: 116%;
+    }
+
+    @include up('wide') {
+      font-size: rem(82);
+      line-height: 116%;
+    }
+  }
+
+  &2 {
+    @extend .t-h;
+
+    font-size: rem(40);
+    line-height: 120%;
+
+    @include up('large') {
+      font-size: rem(45);
+      line-height: 116%;
+    }
+
+    @include up('wide') {
+      font-size: rem(60);
+      line-height: 110%;
+    }
+  }
+
+  &3 {
+    @extend .t-h;
+
+    font-size: rem(34);
+    line-height: 120%;
+
+    @include up('wide') {
+      font-size: rem(44);
+      line-height: 120%;
+    }
+  }
+
+  &4 {
+    @extend .t-h;
+
+    font-size: rem(22);
+    line-height: 140%;
+
+    @include up('wide') {
+      font-size: rem(32);
+      line-height: 120%;
+    }
+  }
+
+  &5 {
+    @extend .t-h;
+
+    font-size: rem(20);
+    line-height: 140%;
+
+    @include up('wide') {
+      font-size: rem(28);
+      line-height: 133%;
+    }
+  }
+
+  &6 {
+    @extend .t-h;
+
+    font-size: rem(20);
+    line-height: 140%;
+
+    @include up('wide') {
+      font-size: rem(24);
+    }
+  }
+}
+
+.t-base {
+  font-family: get-font-stack('General-Sans');
+  font-weight: 400;
+
+  &-wide {
+    @extend .t-base;
+
+    line-height: 160%;
+    font-size: rem(20);
+  }
+
+  &-medium {
+    @extend .t-base;
+
+    font-size: rem(18);
+    line-height: 160%;
+  }
+
+  &-small {
+    @extend .t-base;
+
+    font-size: rem(14);
+    line-height: 140%;
+  }
+}
+
+.t-label {
+
+  &-medium {
+    @extend .t-label;
+    font-size: rem(14);
+    line-height: 141%;
+
+    @include up('wide') {
+      font-size: rem(15);
+    }
+  }
+}
+
+.t-header {
+  &-medium {
+    @extend .t-header;
+    font-size: rem(20);
+    line-height: 140%;
+
+    @include up('wide') {
+      font-size: rem(28);
+    }
+  }
+
+  &-small {
+    font-size: rem(20);
+    line-height: 140%;
+
+    @include up('wide') {
+      font-size: rem(24);
+      line-height: 120%;
+    }
+  }
+}
+
+/*
+  • Link
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.t-link-fx {
+  background: linear-gradient(to top, currentColor 1px, transparent 0) left no-repeat;
+  background-size: 0 100%;
+  transition: background-size 0.3s;
+
+  &:hover,
+  &:focus {
+    background-size: 100% 100%;
+  }
+}
+
+.t-link-fx-wrapper {
+  &>span:not([data-no-link-fx]) {
+    display: inline-block;
+    background: linear-gradient(to top, currentColor 1px, transparent 0) left no-repeat;
+    background-size: 0% 100%;
+    transition: background-size 0.3s;
+  }
+
+  &:hover,
+  &:focus {
+    &>span:not([data-no-link-fx]) {
+      background-size: 100% 100%;
+    }
+  }
+}
+
+
+/*
+  • Font
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.t-sometimes-times {
+  font-family: get-font-stack('Sometimes-Times');
+}

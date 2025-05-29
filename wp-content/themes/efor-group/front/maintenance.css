@@ -1,0 +1,172 @@
+html {
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  font-size: 16px;
+  height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  background: #fff;
+  color: #262628;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+code,
+pre {
+  font-family: 'DM Sans', sans-serif;
+  -moz-osx-font-smoothing: auto;
+  -webkit-font-smoothing: auto;
+}
+
+address {
+  font-style: inherit;
+}
+
+a {
+  color: #262628;
+  text-decoration: none;
+}
+
+a:hover {
+  color: currentColor;
+}
+
+.tetu__logo {
+  margin-bottom: 35px;
+  text-align: center;
+}
+
+.layout-maintenance {
+  text-align: center;
+}
+
+.layout-maintenance__title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Archivo', sans-serif;
+  font-style: normal;
+  font-stretch: 125%;
+  line-height: 135%;
+}
+
+/* Tetu Maintenance bannerbanner-slide
+  ---------- ---------- ---------- ---------- ----------
+*/
+.layout-maintenance__banner-slide__left,
+.layout-maintenance__banner-slide__center,
+.layout-maintenance__banner-slide__right {
+  font-family: 'Archivo', sans-serif;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 95%;
+  text-transform: uppercase;
+}
+
+.layout-maintenance__banner-slide__left {
+  font-stretch: ultra-condensed;
+  font-weight: 200;
+}
+
+.layout-maintenance__banner-slide__center {
+  font-stretch: ultra-condensed;
+  font-weight: 900;
+}
+
+.layout-maintenance__banner-slide__right {
+  font-stretch: expanded;
+  font-weight: 200;
+}
+
+@media screen and (min-width: 1000px) {
+  /*
+    ---------- ---------- ---------- ---------- ----------
+    • Maintenance Header
+  */
+  .layout-maintenance__banner-slide__left,
+  .layout-maintenance__banner-slide__center,
+  .layout-maintenance__banner-slide__right {
+    font-size: 90px;
+    line-height: 95%;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --slide-width: 300vw;
+  --slide-elements-displayed: 20;
+  --slide-element-width: calc(var(--slide-width) / var(--slide-elements-displayed));
+  --slide-animation-duration: calc(var(--slide-elements) * 2s);
+}
+
+.slide {
+  width: var(--slide-width);
+  color: #000;
+  overflow: hidden;
+  position: relative;
+  margin-top: 80px;
+}
+
+.slide-content {
+  list-style: none;
+  height: 100%;
+  display: flex;
+  animation: scrolling var(--slide-animation-duration) linear infinite;
+  margin: 0;
+}
+
+.slide-content > *:not(:last-child) {
+  margin-right: 40px;
+}
+
+@keyframes scrolling {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-1 * var(--slide-element-width) * var(--slide-elements))); }
+}
+
+.slide-content li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: auto;
+  max-height: 100%;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --slide-width: 100vw;
+    --slide-elements-displayed: 3;
+  }
+}

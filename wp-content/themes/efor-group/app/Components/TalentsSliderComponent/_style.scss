@@ -1,0 +1,372 @@
+@use "front/config/sass" as *;
+@use "front/abstract/grid-system/functions" as *;
+@use "front/abstract/grid-system/mixins" as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+  • Medium Breakpoint Styles
+  • Large Breakpoint Styles
+  • Wide Breakpoint Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.talents-slider-component {
+  display: block;
+
+  ul {
+    list-style: none;
+  }
+
+  .talents-header {
+    &__arrows {
+      height: auto;
+      justify-content: flex-end;
+      z-index: 4;
+
+      .talents-arrow-prev {
+        transform: rotateY(180deg);
+        margin-right: rem(24);
+      }
+    }
+  }
+
+  .talents-slider {
+    margin-top: rem(40);
+
+    .swiper {
+      position: relative;
+      width: 100%;
+      height: calc(var(--swiper-width) * var(--swiper-image-ratio) / 100%);
+      overflow: hidden;
+    }
+
+    .swiper-image {
+      user-select: none;
+      position: relative;
+      width: 100%;
+      padding-top: var(--swiper-image-ratio);
+      overflow: hidden;
+      border-radius: 0.431791875rem 2.59075rem 0.431791875rem 0.431791875rem;
+
+      &::before {
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        width: 100%;
+        z-index: 1;
+        height: 100%;
+        border-radius: rem(6.90867) rem(41.452) rem(6.90867) rem(6.90867);
+        display: inline-block;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+          linear-gradient(180deg, rgba(0, 0, 0, 0) 69.79%, rgba(0, 0, 0, 0.7) 100%);
+        opacity: 1;
+        transition: opacity 0.5s;
+      }
+    }
+
+    .swiper-image .image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      cursor: pointer;
+      padding-right: 0;
+      padding-left: 0;
+
+      &.swiper-slide-active,
+      &.swiper-slide-duplicate-active {
+        .content {
+          .tags,
+          .talent,
+          .round-button {
+            transition: opacity 0.5s, visibility 0.5s;
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+      }
+
+      .content {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        left: 0;
+
+        &:hover {
+          .talent {
+            transition: opacity 0.5s, visibility 0.5s;
+            opacity: 1;
+            visibility: visible;
+          }
+        }
+
+        img {
+          border-radius: rem(6.90867) rem(41.452) rem(6.90867) rem(6.90867);
+        }
+
+        .talent {
+          z-index: 2;
+          position: absolute;
+          width: 100%;
+          left: 0;
+          bottom: rem(16);
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.5s, visibility 0.5s;
+
+          &__name {
+            &--small {
+              font-size: rem(18);
+            }
+          }
+        }
+
+        .round-button {
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.5s, visibility 0.5s;
+          position: absolute;
+          top: 25%;
+          right: 15%;
+          z-index: 2;
+
+          &::after {
+            content: url("data:image/svg+xml, %3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' id='icon-plus'%3E%3Cpath d='M12 5V19M5 12H19' stroke='%23000' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+          }
+        }
+      }
+    }
+  }
+}
+
+/*
+  • Medium Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+@include down("medium") {
+  .talents-slider-component {
+    margin-bottom: rem(100);
+
+    .talents-header {
+      &__arrows {
+        position: absolute;
+        left: 0;
+        bottom: rem(-100);
+        justify-content: center;
+      }
+
+      &__title {
+        span {
+          display: block;
+        }
+      }
+    }
+
+    .talents-slider {
+      .swiper-slide {
+        max-width: 48.8%;
+        flex-basis: 48.8%;
+
+        .swiper-image {
+          padding-top: var(--swiper-image-mobile-ratio);
+        }
+
+        &.swiper-slide-active,
+        &.swiper-slide-duplicate-active {
+          max-width: 59%;
+          flex-basis: 69%;
+        }
+      }
+    }
+  }
+}
+
+@include up("medium") {
+  .talents-slider-component {
+    .talents-slider {
+      margin-top: rem(32);
+
+      .swiper-slide {
+        position: relative;
+        width: var(--swiper-width);
+        transform: scale(0.84);
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+        border-radius: rem(6.90867) rem(41.452) rem(6.90867) rem(6.90867);
+      }
+
+      .swiper-backface-hidden .swiper-slide {
+        transform: scale(0.84) translateZ(0);
+      }
+
+      .swiper-backface-hidden .swiper-slide.swiper-slide-active {
+        transform: scale(1) translateZ(0);
+      }
+
+      .swiper-slide.swiper-slide-active {
+        transform: scale(1);
+      }
+
+      .swiper-slide {
+        &.swiper-slide-active,
+        &.swiper-slide-duplicate-active {
+          .content {
+            .talent {
+              &__name {
+                &--small {
+                  font-size: rem(16);
+                }
+              }
+            }
+          }
+        }
+
+        .content {
+          .talent {
+            bottom: rem(24);
+
+            &__name {
+              &--small {
+                font-size: rem(10);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*
+  • Large Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include up("large") {
+  .talents-slider-component {
+    .talents-slider {
+      .swiper-slide {
+        &.swiper-slide-active,
+        &.swiper-slide-duplicate-active {
+          .content {
+            .talent {
+              &__name {
+                &--small {
+                  font-size: rem(20);
+                }
+              }
+            }
+          }
+        }
+
+        .content {
+          .talent {
+            &__name {
+              &--small {
+                font-size: rem(14);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/*
+  • Wide Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include up("wide") {
+  .talents-slider-component {
+    .talents-slider {
+      .swiper-slide {
+        &.swiper-slide-active,
+        &.swiper-slide-duplicate-active {
+          .content {
+            .talent {
+              &__name {
+                &--small {
+                  font-size: rem(24);
+                }
+              }
+            }
+          }
+        }
+
+        .content {
+          .talent {
+            &__name {
+              &--small {
+                font-size: rem(18);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .talents-slider-component {
+    .talents-slider {
+      .swiper-slide {
+        &.swiper-slide-active,
+        &.swiper-slide-duplicate-active {
+          .content {
+            .talent {
+              &__name {
+                &--small {
+                  font-size: rem(40);
+                }
+              }
+            }
+          }
+        }
+
+        .content {
+          .talent {
+            &__name {
+              &--small {
+                font-size: rem(26);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+:root {
+  --swiper-image-ratio: 147.924528%; /* ratio 16:9 = 56.25% */
+  --swiper-image-mobile-ratio: 167.924528%; /* ratio 16:9 = 56.25% */
+
+  --swiper-width: 23%;
+  --swiper-inactive-scale: 0.85; /* makes the other slide smaller */
+
+  /* responsive settings */
+  --swiper-mobile-width: 50%;
+  --swiper-mobile-inactive-scale: 0.95;
+}

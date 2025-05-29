@@ -1,0 +1,93 @@
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:meta';
+@use 'front/config/sass' as *;
+@use './variables';
+@use './functions';
+
+@mixin up($from) {
+  @if meta.type-of($from) == string {
+    $from: map.get(functions.get-breakpoint($from), 'value');
+    @media screen and (min-width: $from) {
+      @content;
+    }
+  }
+  @else if meta.type-of($from) == number {
+    @media screen and (min-width: $from) {
+      @content;
+    }
+  }
+  @else {
+    @content;
+  }
+}
+
+@mixin down($from) {
+  @if meta.type-of($from) == string {
+    $from: map.get(functions.get-breakpoint($from), 'value');
+
+    @if math.compatible($from, 1rem) {
+      $from: $from - rem(1);
+    }
+    @else if math.compatible($from, 1px) {
+      $from: $from - 1px;
+    }
+    @else if math.compatible($from, 1em) {
+      $from: $from - em(1);
+    }
+    @else {
+      $from: $from - rem(1);
+    }
+
+    @media screen and (max-width: $from) {
+      @content;
+    }
+  }
+  @else if meta.type-of($from) == number {
+    @media screen and (max-width: $from) {
+      @content;
+    }
+  }
+  @else {
+    @content;
+  }
+}
+
+@mixin between($min, $max) {
+  @if meta.type-of($min) == string {
+    $min: map.get(functions.get-breakpoint($min), 'value');
+  }
+
+  @if meta.type-of($max) == string {
+    $max: map.get(functions.get-breakpoint($max), 'value');
+  }
+
+  @if $min == null or meta.type-of($min) != number {
+    @include down($max) {
+      @content;
+    }
+  }
+  @else if $max == null or meta.type-of($max) != number {
+    @include up($min) {
+      @content;
+    }
+  }
+  @else {
+    @if math.compatible($max, 1rem) {
+      $max: $max - rem(1);
+    }
+    @else if math.compatible($max, 1px) {
+      $max: $max - 1px;
+    }
+    @else if math.compatible($max, 1em) {
+      $max: $max - em(1);
+    }
+    @else {
+      $max: $max - rem(1);
+    }
+
+    @media screen and (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  }
+}

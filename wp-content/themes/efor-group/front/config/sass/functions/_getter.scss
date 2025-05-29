@@ -1,0 +1,44 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use '../variables/' as *;
+
+@function global-var($module, $name) {
+  // Not working
+  @return map.get(meta.module-variables('../variables/' + $module), $name);
+}
+
+@function color ($name) {
+  @if map.has-key($color-palette, $name) {
+    @return map.get($color-palette, $name);
+  }
+  @else {
+    @return currentColor;
+  }
+}
+
+@function primary-color () {
+  @if meta.global-variable-exists('color-primary-color') {
+    @return $color-primary-color;
+  }
+  @else {
+    @return currentColor;
+  }
+}
+
+@function font-family ($name) {
+  @if map.has-key($font-families, $name) {
+    @return map.get($font-families, $name);
+  }
+  @else {
+    @return inherit;
+  }
+}
+
+@function font-stack ($name) {
+  @if map.has-key($font-stacks, $name) {
+    @return map.get($font-stacks, $name);
+  }
+  @else {
+    @return inherit;
+  }
+}

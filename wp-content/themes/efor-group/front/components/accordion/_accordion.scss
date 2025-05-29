@@ -1,0 +1,90 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+/*
+  • Accordion file
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.accordion {
+  & > *:not(:last-child) {
+    //margin-bottom: rem(24);
+  }
+
+  .item {
+    overflow: hidden;
+    position: relative;
+    padding-bottom: rem(24);
+    min-height: rem(66);
+
+    &::after {
+      content: '';
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: rem(1);
+      display: inline-block;
+      opacity: 0.2;
+      background: currentColor;
+      position: absolute;
+    }
+
+    &--open {
+      .item__title {
+        font-family: get-font-stack('Sometimes-Times');
+        font-style: italic;
+      }
+
+      .item__content {
+        margin-top: rem(24);
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    &__index {
+      opacity: 0.6;
+      margin-right: rem(4);
+    }
+
+    &__intro {
+      cursor: pointer;
+    }
+
+    &__content {
+      max-height: 0;
+      will-change: max-height;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.25s ease-out;
+
+      .title {
+        margin-bottom: rem(24);
+      }
+    }
+  }
+}
+
+@include up(medium) {
+  .accordion {
+    & > *:not(:last-child) {
+     // margin-bottom: rem(30);
+    }
+
+    .item {
+      padding-bottom: rem(30);
+      min-height: rem(68);
+
+      &--open {
+        .item__content {
+          margin-top: rem(30);
+        }
+      }
+
+      &__content {
+        .title {
+          margin-bottom: rem(30);
+        }
+      }
+    }
+  }
+}

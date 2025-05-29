@@ -1,0 +1,131 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+@-ms-viewport {
+  width: device-width;
+}
+
+@viewport {
+  width: device-width;
+}
+
+html {
+  scroll-behavior: smooth;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  font-size: $font-root-size;
+
+  @include up(large) {
+    scroll-padding-top: 156px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+:root {
+  --admin-bar--mobile: 46px;
+  --admin-bar--desktop: 32px;
+}
+
+#wpadminbar {
+  top: calc(-1 * var(--admin-bar--mobile));
+
+  @media screen and (min-width: 601px) {
+    top: 0;
+  }
+}
+
+body {
+  position: relative;
+  background: get-color('white');
+  color: $font-default-color;
+  font-family: $font-default-stack;
+  font-size: $font-default-size;
+  line-height: $font-default-line-height;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-180deg, rgba(get-color('black-graphite'), 0.25) 60%, #92242400 100%);
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: opacity 0.6s ease-in-out, transform 0.8s ease-in-out;
+  }
+}
+
+hr {
+  display: block;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  border-top: 1px solid;
+  margin: rem(32) 0;
+  color: get-color("grey-clear");
+
+  &.hr--s-space {
+    margin-top: rem(16);
+    margin-bottom: rem(16);
+  }
+
+  &.hr--l-space {
+    margin-top: rem(48);
+    margin-bottom: rem(48);
+  }
+
+  &.hr--xl-space {
+    margin-top: rem(80);
+    margin-bottom: rem(80);
+  }
+}
+
+[data-href] {
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+code,
+pre {
+  font-family: get-font-stack(monospace);
+  -moz-osx-font-smoothing: auto;
+  -webkit-font-smoothing: auto;
+}
+
+address {
+  font-style: inherit;
+}
+
+body > .wrap[role="document"] {
+  overflow-x: hidden;
+}
+
+.implantations-du-groupe {
+  .wrap {
+    overflow: inherit !important;
+  }
+}

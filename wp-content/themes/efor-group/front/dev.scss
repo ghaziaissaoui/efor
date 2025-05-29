@@ -1,0 +1,103 @@
+@use 'front/abstract/grid-system/functions' as functions;
+@use 'front/abstract/grid-system/mixins' as mixins;
+@use 'front/abstract/grid-system/variables' as variables;
+
+.--front-bar {
+  display: flex;
+  padding: 4px 0 4px 4px;
+  position: fixed;
+  z-index: 2000000;
+  left: 0;
+  bottom: 0;
+  color: #000;
+  font-family: General-Sans, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  line-height: 1;
+
+  button {
+    padding: 3px 6px 5px;
+    border: 0;
+    border-radius: 4px;
+    outline: 0;
+    background: #fff;
+    box-shadow: 0 0 0 1px rgba(#000, 0.1);
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
+
+.--front-breakpoint-label:after {
+  content: 'base';
+  display: block;
+  padding: 3px 6px 5px;
+  border-radius: 4px;
+  background: #000;
+  box-shadow: 0 0 0 1px rgba(#000, 0.1);
+  color: #fff;
+}
+
+@each $-slug in functions.get-breakpoints-iterable() {
+  $-shorthand: functions.get-breakpoint-shorthand($-slug);
+  $-value: functions.get-breakpoint-value($-slug);
+
+  @include mixins.up($-value) {
+    .--front-breakpoint-label:after {
+      content: '#{$-slug} / #{$-shorthand}';
+    }
+  }
+}
+
+.--front-utils {
+  display: none;
+  padding: 0 4px 0 8px;
+
+  & > * + * {
+    margin-left: 8px;
+  }
+}
+
+.--front-bar:hover {
+  width: 100%;
+  background-color: rgba(#000, 0.5);
+
+  .--front-utils {
+    display: flex;
+  }
+}
+
+.--front-grid-overlay {
+  pointer-events: none;
+  position: fixed;
+  z-index: 1000000;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  [class*="gs-container"],
+  [class*="gs-fluid-container"],
+  [class*="gs-flush-container"],
+  [class*="gs-row"],
+  [class*="gs-flush-row"],
+  [class*="gs-column"],
+  [class*="gs-flush-column"],
+  [class*="gs-column"] > div,
+  [class*="gs-flush-column"] > div {
+    height: 100%;
+  }
+
+  [class*="gs-column"] > div,
+  [class*="gs-flush-column"] > div {
+    background: linear-gradient(to bottom right, rgba(#f00, 0.1), rgba(#f00, 0.2));
+  }
+}

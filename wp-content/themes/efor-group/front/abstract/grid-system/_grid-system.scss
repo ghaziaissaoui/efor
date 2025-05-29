@@ -1,0 +1,421 @@
+@use 'sass:map';
+@use 'sass:math';
+@use 'front/config/sass' as *;
+@use './variables';
+@use './functions';
+@use './mixins';
+
+/*
+  CSS Native Variables
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+:root {
+  --gs-margins: #{map.get(variables.$base, 'margins')};
+  --gs-max-width: #{map.get(variables.$base, 'max-width')};
+  --gs-adjusted-max-width: calc(var(--gs-max-width) + var(--gs-margins) * 2);
+  --gs-gutter: #{map.get(variables.$base, 'gutters')};
+  --gs-half-gutter: calc(var(--gs-gutter) / 2);
+  --gs-white-space: max(var(--gs-margins), calc((100vw - var(--gs-max-width)) / 2));
+  --gs-flush-white-space: max(0px, calc((100vw - var(--gs-max-width)) / 2));
+  --gs-width-sidebar: #{map.get(variables.$base, 'sidebar')};
+  --gs-sidebar: calc(var(--gs-max-width) - var(--gs-width-sidebar));
+}
+
+/*
+  • Container base
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+%container-base {
+  box-sizing: border-box;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+%container-margins {
+  padding-left: var(--gs-margins);
+  padding-right: var(--gs-margins);
+}
+
+%container-max-width {
+  max-width: var(--gs-max-width);
+}
+
+%container-adjusted-max-width {
+  max-width: var(--gs-adjusted-max-width);
+}
+
+%swipable-container {
+  &::after {
+    content: '';
+    display: block;
+    flex: 0 0 auto;
+    height: 1px;
+  }
+}
+
+.gs-container {
+  @extend %container-base;
+  @extend %container-margins;
+  @extend %container-adjusted-max-width;
+}
+
+.gs-fluid-container {
+  @extend %container-base;
+  @extend %container-margins;
+}
+
+.gs-flush-container {
+  @extend %container-base;
+  @extend %container-max-width;
+}
+
+.gs-full-container {
+  @extend %container-base;
+}
+
+.gs-swipable-container {
+  @extend %swipable-container;
+
+  padding-left: var(--gs-white-space);
+
+  &::after {
+    width: var(--gs-white-space);
+  }
+}
+
+.gs-swipable-flush-container {
+  @extend %swipable-container;
+
+  padding-left: var(--gs-flush-white-space);
+
+  &::after {
+    width: var(--gs-flush-white-space);
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .gs-full-container {
+    margin-right: var(--gs-width-sidebar);
+  }
+
+  .gs-fluid-container {
+    margin-left: calc(((100vw - var(--gs-max-width)) / 2));
+    margin-right: calc(((100vw - var(--gs-max-width)) / 2) + var(--gs-width-sidebar));
+    max-width: var(--gs-max-width);
+  }
+
+  .gs-fluid-container--right {
+    margin-left: var(--gs-width-sidebar);
+    margin-right: calc(((100vw - var(--gs-max-width)) / 2));
+  }
+
+  .gs-fluid-container--left {
+    margin-left: calc(((100vw - var(--gs-max-width)) / 2));
+    margin-right: var(--gs-width-sidebar);
+  }
+
+  .gs-fluid-container--right,
+  .gs-fluid-container--left {
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .gs-container--right,
+  .gs-container--left {
+    box-sizing: border-box;
+    position: relative;
+    max-width: calc(var(--gs-adjusted-max-width) + (50% - var(--gs-adjusted-max-width) / 2));
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .gs-fluid-container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .gs-container--right,
+  .gs-container--left,
+  .gs-fluid-container--right,
+  .gs-fluid-container--left,
+  .gs-fluid-container {
+    max-width: var(--gs-max-width);
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/*
+  • Row base
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+%row-base {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  align-content: flex-start;
+  box-sizing: border-box;
+}
+
+%row-gutter {
+  margin-left: calc(var(--gs-half-gutter) * -1);
+  margin-right: calc(var(--gs-half-gutter) * -1);
+}
+
+.gs-row {
+  @extend %row-base;
+  @extend %row-gutter;
+}
+
+.gs-flush-row {
+  @extend %row-base;
+}
+
+/*
+  • Column base
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+%column-base {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+}
+
+%column-gutter {
+  padding-left: var(--gs-half-gutter);
+  padding-right: var(--gs-half-gutter);
+}
+
+%column-fit-content {
+  flex-basis: auto;
+  width: auto;
+}
+
+%column-fill-space {
+  flex-grow: 1;
+  flex-basis: 0%;
+  width: 0%;
+}
+
+.gs-column {
+  @extend %column-base;
+  @extend %column-gutter;
+}
+
+.gs-column-fit-content {
+  @extend %column-base;
+  @extend %column-gutter;
+  @extend %column-fit-content;
+}
+
+.gs-column-fill-space {
+  @extend %column-base;
+  @extend %column-gutter;
+  @extend %column-fill-space;
+}
+
+.gs-flush-column {
+  @extend %column-base;
+}
+
+.gs-flush-column-fit-content {
+  @extend %column-base;
+  @extend %column-fit-content;
+}
+
+.gs-flush-column-fill-space {
+  @extend %column-base;
+  @extend %column-fill-space;
+}
+
+@for $-i from 1 to variables.$number-of-columns {
+  .gs-column-#{$-i} {
+    @extend %column-base;
+    @extend %column-gutter;
+  }
+
+  .gs-flush-column-#{$-i} {
+    @extend %column-base;
+  }
+
+  .gs-column-#{$-i},
+  .gs-flush-column-#{$-i} {
+    flex-basis: math.div(100%, variables.$number-of-columns) * $-i;
+    width: math.div(100%, variables.$number-of-columns) * $-i;
+    max-width: math.div(100%, variables.$number-of-columns) * $-i;
+  }
+}
+
+@each $-slug, $-obj in variables.$breakpoints {
+  $-prefix: functions.get-breakpoint-prefix($-obj);
+  $-value: functions.get-breakpoint-value($-obj);
+  $-margins: functions.get-breakpoint-margins($-obj);
+  $-max-width: functions.get-breakpoint-max-width($-obj);
+  $-gutters: functions.get-breakpoint-gutters($-obj);
+
+  .#{$-prefix}gs-column {
+    @extend %column-base;
+    @extend %column-gutter;
+  }
+
+  .#{$-prefix}gs-flush-column {
+    @extend %column-base;
+  }
+
+  .#{$-prefix}gs-column-fit-content {
+    @extend %column-base;
+    @extend %column-gutter;
+  }
+
+  .#{$-prefix}gs-flush-column-fit-content {
+    @extend %column-base;
+  }
+
+  .#{$-prefix}gs-column-fill-space {
+    @extend %column-base;
+    @extend %column-gutter;
+  }
+
+  .#{$-prefix}gs-flush-column-fill-space {
+    @extend %column-base;
+  }
+
+  @for $-i from 1 to variables.$number-of-columns {
+    .#{$-prefix}gs-column-#{$-i} {
+      @extend %column-base;
+      @extend %column-gutter;
+    }
+
+    .#{$-prefix}gs-flush-column-#{$-i} {
+      @extend %column-base;
+    }
+  }
+}
+
+@if variables.$include-push {
+  @for $-i from 1 to variables.$number-of-columns {
+    .gs-push-#{$-i} {
+      margin-left: math.div(100%, variables.$number-of-columns) * $-i;
+    }
+  }
+}
+
+@if variables.$include-pull {
+  @for $-i from 1 to variables.$number-of-columns {
+    .gs-pull-#{$-i} {
+      margin-right: math.div(100%, variables.$number-of-columns) * $-i;
+    }
+  }
+}
+
+/*
+  • Breakpoints
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@each $-slug, $-obj in variables.$breakpoints {
+  $-prefix: functions.get-breakpoint-prefix($-obj);
+  $-value: functions.get-breakpoint-value($-obj);
+  $-margins: functions.get-breakpoint-margins($-obj);
+  $-max-width: functions.get-breakpoint-max-width($-obj);
+  $-gutters: functions.get-breakpoint-gutters($-obj);
+  $-sidebar: functions.get-breakpoint-sidebar($-obj);
+
+  @include mixins.up($-value) {
+    :root {
+      @if $-margins {
+        --gs-margins: #{$-margins};
+      }
+
+      @if $-max-width {
+        --gs-max-width: #{$-max-width};
+      }
+
+      @if $-margins or $-max-width {
+        --gs-adjusted-max-width: calc(var(--gs-max-width) + var(--gs-margins) * 2);
+      }
+
+      @if $-gutters {
+        --gs-gutter: #{$-gutters};
+        --gs-half-gutter: calc(var(--gs-gutter) / 2);
+      }
+
+      @if $-sidebar {
+        --gs-width-sidebar: #{$-sidebar};
+      }
+    }
+
+    .#{$-prefix}gs-column-fit-content,
+    .#{$-prefix}gs-flush-column-fit-content {
+      flex-basis: auto;
+      width: auto;
+      max-width: 100%;
+    }
+
+    .#{$-prefix}gs-column-fill-space,
+    .#{$-prefix}gs-flush-column-fill-space {
+      flex-grow: 1;
+      flex-basis: 0%;
+      width: 0%;
+      max-width: 100%;
+    }
+
+    .#{$-prefix}gs-column,
+    .#{$-prefix}gs-flush-column {
+      flex-basis: 100%;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    @for $-i from 1 to variables.$number-of-columns {
+      .#{$-prefix}gs-column-#{$-i},
+      .#{$-prefix}gs-flush-column-#{$-i} {
+        flex-basis: math.div(100%, variables.$number-of-columns) * $-i;
+        max-width: math.div(100%, variables.$number-of-columns) * $-i;
+      }
+    }
+
+    @if variables.$include-push {
+      .#{$-prefix}gs-no-push {
+        margin-left: 0;
+      }
+
+      @for $-i from 1 to variables.$number-of-columns {
+        .#{$-prefix}gs-push-#{$-i} {
+          margin-left: math.div(100%, variables.$number-of-columns) * $-i;
+        }
+      }
+    }
+
+    @if variables.$include-pull {
+      .#{$-prefix}gs-no-pull {
+        margin-right: 0;
+      }
+
+      @for $-i from 1 to variables.$number-of-columns {
+        .#{$-prefix}gs-pull-#{$-i} {
+          margin-right: math.div(100%, variables.$number-of-columns) * $-i;
+        }
+      }
+    }
+  }
+}
+
+/*
+  • Right to left
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@if variables.$include-rtl {
+  .gs-row--reverse {
+    flex-direction: row-reverse;
+  }
+}

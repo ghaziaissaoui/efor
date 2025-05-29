@@ -1,0 +1,177 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.footer-component {
+  display: block;
+  padding-top: rem(40);
+  padding-bottom: calc(rem(40) + var(--gs-width-sidebar));
+  background-color: get-color('black-graphite');
+  color: get-color('white');
+
+  ul {
+    list-style: none;
+  }
+
+  a {
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: get-color('gold') !important;
+    }
+  }
+
+  &-header {
+    display: flex;
+    flex-direction: column;
+    gap: rem(40);
+    padding-bottom: rem(60);
+    border-bottom: 1px solid rgba(get-color('gray-20'), 0.2);
+
+    &__buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: rem(24);
+    }
+  }
+
+  &-nav {
+    padding-top: rem(60);
+    padding-bottom: rem(40);
+
+    &__social {
+      margin-top: rem(40);
+      padding-top: rem(40);
+      border-top: 1px solid rgba(get-color('gray-20'), 0.2);
+    }
+
+    &__menu {
+      .menu-title {
+        cursor: initial;
+      }
+    }
+
+    &__menu-expertise-nav {
+      padding-left: rem(16.5);
+      border-left: 1px solid rgba(get-color('gray-20'), 0.2);
+      margin-top: rem(16);
+      opacity: 0;
+      transition: margin-top 0.3s, margin-bottom 0.3s, opacity 0.3s ease-in-out;
+
+      &.collapsible--expanded {
+        margin-top: rem(16);
+        margin-bottom: rem(16);
+        opacity: 1;
+        transition: margin-top 0.3s, margin-bottom 0.3s, opacity 0.3s ease-in-out;
+      }
+    }
+  }
+
+  &-mentions {
+    margin-top: rem(40);
+
+    &__nav {
+      margin-bottom: rem(36);
+
+      ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: rem(16);
+      }
+    }
+  }
+
+  .social-medias__icon {
+    object-fit: contain;
+  }
+}
+
+@include up('large') {
+  .footer-component {
+    padding-top: rem(70);
+    padding-bottom: rem(70);
+
+    &-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: rem(76);
+
+      &__buttons {
+        align-items: center;
+        gap: rem(32);
+      }
+    }
+
+    &-nav {
+      padding-top: rem(76);
+      padding-bottom: rem(76);
+
+      &__social {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+      }
+
+      &__menu {
+        &-expertise {
+          &-nav {
+            &.collapsible--expanded {
+              margin-bottom: rem(24);
+            }
+          }
+
+          &-title {
+            color: get-color('gray-40');
+            font-size: rem(16);
+            transition: color 0.3s ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+              color: get-color('gold') !important;
+            }
+          }
+        }
+      }
+    }
+
+    &-mentions {
+      margin-top: 0;
+
+      &__nav {
+        margin-bottom: 0;
+
+        ul {
+          justify-content: flex-start;
+        }
+      }
+    }
+
+    .collapsible--stop {
+      height: auto !important;
+      visibility: visible !important;
+      transition: visibility 0s 0s, height 0.3s 0s;
+
+      &-item {
+        cursor: default;
+      }
+    }
+  }
+}

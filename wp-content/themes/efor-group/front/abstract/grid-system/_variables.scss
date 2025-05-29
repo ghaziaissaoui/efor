@@ -1,0 +1,48 @@
+@use 'front/config/sass' as *;
+
+$number-of-columns: 12;
+$include-pull: true;
+$include-push: true;
+$include-rtl: true;
+
+$base: (
+  margins: rem(20),
+  max-width: rem(420),
+  gutters: rem(20),
+  sidebar: rem(65)
+);
+
+$breakpoints: (
+  small: (
+    shorthand: 'sm',
+    value: rem(560),
+    margins: null,
+    max-width: rem(560),
+    gutters: null,
+    sidebar: rem(65)
+  ),
+  medium: (
+    shorthand: 'md',
+    value: rem(720),
+    margins: null,
+    max-width: rem(750),
+    gutters: null,
+    sidebar: rem(50)
+  ),
+  large: (
+    shorthand: 'lg',
+    value: rem(1000),
+    margins: rem(60),
+    max-width: rem(1000),
+    gutters: rem(30),
+    sidebar: rem(50)
+  ),
+  wide: (
+    shorthand: 'wd',
+    value: rem(1280),
+    margins: rem(60),
+    max-width: rem(1280),
+    gutters: rem(51),
+    sidebar: rem(50)
+  )
+);

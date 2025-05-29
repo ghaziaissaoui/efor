@@ -1,0 +1,205 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+  • Large Breakpoint Styles
+  • Wide Breakpoint Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+$step-size: rem(13);
+
+@mixin step(
+  $top: 0,
+  $bottom: auto,
+  $left: calc(50% - calc($step-size / 2))
+) {
+  content: "";
+  display: block;
+  position: absolute;
+  top: $top;
+  left: $left;
+  bottom: $bottom;
+  z-index: 1;
+  width: $step-size;
+  height: $step-size;
+  border-radius: 50%;
+  background-color: get-color('gold');
+}
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.timeline {
+  &-component {
+    --first-content-height: 15.9375rem;
+  }
+
+  &-header {
+    margin-bottom: rem(50);
+  }
+
+  &-contents {
+    display: flex;
+    flex-direction: column;
+    gap: rem(50);
+    position: relative;
+    padding-left: rem(40);
+  }
+
+  &-content {
+    position: relative;
+
+    &__year {
+      display: block;
+    }
+
+    // Steps points
+    &::after {
+      @include step(
+        $top: calc(rem(50) / 2),
+        $left: calc((rem(40) * -1) - ($step-size / 2))
+      );
+    }
+
+    // First step point
+    &:first-child::after {
+      content: none;
+    }
+  }
+
+  &-progressbar {
+    position: absolute;
+    top: rem(25);
+    left: 0;
+    width: rem(1);
+    height: 100%;
+    background-image: linear-gradient(#C8C6C6 40%, rgba(255, 255, 255, 0) 0%);
+    background-position: right;
+    background-size: rem(1) rem(15);
+    background-repeat: repeat-y;
+
+    &__fill {
+      display: block;
+      height: 100%;
+      max-height: 0;
+      width: rem(2);
+      border-radius: rem(50);
+      background-color: get-color('gold');
+      transform: translateX(rem(-0.5));
+      transition: max-height 0.3s ease;
+    }
+
+    &-container {
+      position: relative;
+      height: 100%;
+
+      // Steps points
+      &::before {
+        @include step();
+      }
+    }
+  }
+}
+
+/*
+  • Large Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+@include up('large') {
+  .timeline {
+    &-header {
+      margin-bottom: rem(96);
+    }
+
+    &-contents {
+      gap: rem(200);
+      padding-left: 0;
+    }
+
+    &-content {
+      &__year {
+        display: block;
+        font-size: rem(130);
+      }
+
+      &:nth-child(2n) {
+        & > *:last-child {
+          order: -1;
+        }
+
+        .timeline-content__year {
+          text-align: right;
+        }
+      }
+
+      // Steps points
+      &::after {
+        @include step(
+          $top: calc(50% - calc($step-size / 2)),
+        );
+      }
+    }
+
+    &-progressbar {
+      top: calc((var(--first-content-height) / 2) + ($step-size / 2));
+      left: calc(50% - calc(rem(1) / 2));
+      height: calc(100% - var(--first-content-height) - calc((var(--first-content-height) / 2) + ($step-size / 2)) + 200px);
+
+      &-container {
+        position: relative;
+        height: 100%;
+
+        // First step point
+        &::before {
+          @include step(
+            $top: 0,
+          );
+        }
+      }
+    }
+  }
+}
+
+/*
+  • Wide Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+@include up('wide') {
+  .timeline {
+    &-content {
+      &__year {
+        font-size: rem(212);
+      }
+
+      // Last step point of the content
+      &:nth-last-child(2)::after {
+        content: none;
+      }
+    }
+
+    &-progressbar {
+      top: calc(var(--first-content-height) / 2);
+      height: calc(100% - var(--first-content-height) - calc(var(--first-content-height) / 2) + 200px);
+
+      &-container {
+        // Last step point
+        &::after {
+          @include step(
+            $top: auto,
+            $bottom: 0,
+          );
+        }
+      }
+    }
+  }
+}

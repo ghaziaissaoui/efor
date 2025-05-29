@@ -1,0 +1,58 @@
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:meta';
+@use 'sass:string';
+@use '../variables/' as *;
+@use './unit' as *;
+@use './convert' as convert;
+@use './string' as str;
+
+@function space ($i, $base: $base-ref-space) {
+  @if meta.type-of($i) != number {
+    @return string.unquote($i);
+  }
+  @else {
+    @return rem($i * $base);
+  }
+}
+
+@function css-lock ($fromValue, $toValue, $fromWidth, $toWidth) {
+  @return calc(#{$fromValue} + (#{strip-unit($toValue)} - #{strip-unit($fromValue)}) * ((100vw - #{$fromWidth}) / (#{strip-unit($toWidth)} - #{strip-unit($fromWidth)})));
+}
+
+@function modular-scale-ratio ($r, $base: $font-default-size) {
+  $base: strip-unit($base);
+  $boom: str.split('@', $r);
+  $r: ();
+
+  @each $n in $boom {
+    $r: list.append($r, convert.to-number($n));
+  }
+
+  $size: list.nth($r, 1);
+  $at: list.nth($r, 2);
+
+  @return math.pow(math.div($size, $base), math.div(1, $at));
+}
+
+@function modular-scale-rem ($n, $ratio: $font-modular-scale-ratio, $base: $font-default-size) {
+  $ratio: modular-scale-ratio($ratio, $base);
+  $base: rem(px($base));
+
+  @for $_i from 0 to $n {
+    $base: $base * $ratio;
+  }
+
+  @return $base;
+}
+
+@function modular-scale-em ($n, $ratio: $font-modular-scale-ratio, $base: $font-default-size) {
+  $ratio: modular-scale-ratio($ratio, $base);
+  $base: em(px($base));
+
+  @for $_i from 0 to $n {
+    $base: $base * $ratio;
+  }
+
+  @return $base;
+}

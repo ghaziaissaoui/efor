@@ -1,0 +1,79 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+@use 'front/components/cards/cards' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+  • Medium Breakpoint Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+.card-actu-component {
+  ul {
+    list-style: none;
+  }
+
+  .card-actu-header {
+    margin-bottom: rem(50);
+
+    &__title {
+      margin-bottom: rem(10);
+    }
+  }
+
+  .card-actu-list { // list of cards
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+/*
+  • Medium Breakpoint Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+@include up('medium') {
+  .card-actu-component {
+    .card-actu-header {
+      justify-content: space-between;
+      margin-bottom: rem(64);
+
+      &__title {
+        margin-bottom: rem(8);
+      }
+    }
+  }
+}
+
+@include down ('medium') {
+  .card-actu-component {
+    margin-bottom: rem(214);
+
+    .card-actu-header {
+      &__btn {
+        position: absolute;
+        bottom: - rem(110);
+        left: 0;
+        right: 0;
+        width: auto;
+        text-align: center;
+      }
+    }
+
+    .card-actu-list {
+      padding-right: rem(30);
+    }
+  }
+}

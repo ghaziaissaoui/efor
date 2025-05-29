@@ -1,0 +1,162 @@
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:meta';
+@use './variables';
+
+@function get-number-of-columns () {
+  @return variables.$number-of-columns;
+}
+
+@function get-breakpoints-iterable () {
+  $list: ();
+
+  @each $-slug, $-obj in variables.$breakpoints {
+    $list: list.append($list, $-slug);
+  }
+
+  @return $list;
+}
+
+@function get-breakpoint ($identifier: null, $fallback: null) {
+  @if not $identifier or $identifier == 'base' {
+    @return variables.$base;
+  }
+
+  @each $-slug, $-obj in variables.$breakpoints {
+    @if $identifier == $-slug or $identifier == map.get($-obj, "shorthand") {
+      @return $-obj;
+    }
+  }
+
+  @return $fallback;
+}
+
+@function get-breakpoint-prefix ($breakpoint: null, $fallback: null) {
+  $shorthand: get-breakpoint-shorthand($breakpoint);
+
+  @if $shorthand {
+    @return '\\@' + $shorthand + '\\:';
+  }
+
+  @return $fallback;
+}
+
+@function get-breakpoint-shorthand ($breakpoint: null, $fallback: null) {
+  @if not $breakpoint or $breakpoint == 'base' {
+    @return 'base';
+  }
+  @else if meta.type-of($breakpoint) == string {
+    $breakpoint: get-breakpoint($breakpoint);
+  }
+
+  $value: map.get($breakpoint, "shorthand");
+
+  @if $value {
+    @return $value;
+  }
+
+  @return $fallback;
+}
+
+@function get-breakpoint-value ($breakpoint: null, $fallback: null) {
+  @if not $breakpoint or $breakpoint == 'base' {
+    @return 0;
+  }
+  @else if meta.type-of($breakpoint) == string {
+    $breakpoint: get-breakpoint($breakpoint);
+  }
+
+  $value: map.get($breakpoint, "value");
+
+  @if $value {
+    @return $value;
+  }
+
+  @return $fallback;
+}
+
+@function get-breakpoint-margins ($breakpoint: null, $fallback: null) {
+  @if not $breakpoint or meta.type-of($breakpoint) == string {
+    $breakpoint: get-breakpoint($breakpoint);
+  }
+
+  $value: map.get($breakpoint, "margins");
+
+  @if $value {
+    @return $value;
+  }
+
+  @return $fallback;
+}
+
+@function get-breakpoint-max-width ($breakpoint: null, $fallback: null) {
+  @if not $breakpoint or meta.type-of($breakpoint) == string {
+    $breakpoint: get-breakpoint($breakpoint);
+  }
+
+  $value: map.get($breakpoint, "max-width");
+
+  @if $value {
+    @return $value;
+  }
+
+  @return $fallback;
+}
+
+
+@function get-breakpoint-sidebar ($breakpoint: null, $fallback: null) {
+  @if not $breakpoint or meta.type-of($breakpoint) == string {
+    $breakpoint: get-breakpoint($breakpoint);
+  }
+
+  $value: map.get($breakpoint, "sidebar");
+
+  @if $value {
+    @return $value;
+  }
+
+  @return $fallback;
+}
+
+@function get-breakpoint-gutters ($breakpoint: null, $fallback: null) {
+  @if not $breakpoint or meta.type-of($breakpoint) == string {
+    $breakpoint: get-breakpoint($breakpoint);
+  }
+
+  $value: map.get($breakpoint, "gutters");
+
+  @if $value {
+    @return $value;
+  }
+
+  @return $fallback;
+}
+
+@function get-median-breakpoint-value ($lower, $higher) {
+  @if meta.type-of($lower) != number {
+    $lower: get-breakpoint-value($lower);
+  }
+
+  @if meta.type-of($higher) != number {
+    $higher: get-breakpoint-value($higher);
+  }
+
+  @if $lower > $higher {
+    $temp: $lower;
+    $lower: $higher;
+    $higher: $temp;
+  }
+  @else if $lower == $higher {
+    @return $lower;
+  }
+
+  @return $lower + ($higher - $lower) / 2;
+}
+
+@function get-column-width ($n) {
+  @return (100% / variables.$number-of-columns) * $n;
+}
+
+@function char-count-based-font-size ($min-char-count: 15, $max-char-count: 45, $min-size: 50%, $max-size: 100%) {
+  @return calc(#{$max-size} - min(1, max(0, (var(--char-count, #{$min-char-count}) - #{$min-char-count}) / #{$max-char-count - $min-char-count})) * #{$max-size - $min-size});
+}

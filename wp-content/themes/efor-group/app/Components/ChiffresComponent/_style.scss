@@ -1,0 +1,251 @@
+@use 'front/config/sass' as *;
+@use 'front/abstract/grid-system/mixins' as *;
+
+/*
+  Index
+  ---------- ---------- ---------- ---------- ----------
+  • Config
+  • Base Styles
+*/
+
+/*
+  • Config
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+/*
+  • Base Styles
+  ---------- ---------- ---------- ---------- ----------
+*/
+
+:root {
+  --scale: 1.04;
+  @include up('md') {
+    --scale: 1.08;
+  }
+  @include up('lg') {
+    --scale: 1.21;
+  }
+}
+
+@keyframes scaleUpAndDown1 {
+  0% {
+    transform: scale(1);
+  }
+
+  13% {
+    transform: scale(var(--scale));
+  }
+
+  18% {
+    transform: scale(var(--scale));
+  }
+
+  36% {
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleUpAndDown2 {
+  34% {
+    transform: scale(1);
+  }
+
+  46% {
+    transform: scale(var(--scale));
+  }
+
+  51% {
+    transform: scale(var(--scale));
+  }
+
+  68% {
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleUpAndDown3 {
+  66% {
+    transform: scale(1);
+  }
+
+  78% {
+    transform: scale(var(--scale));
+  }
+
+  83% {
+    transform: scale(var(--scale));
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.chiffres-component {
+  @include down('lg') {
+    &__title,
+    &__content {
+      text-align: center;
+    }
+
+    &__button {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  &__button {
+    max-width: max-content;
+  }
+
+  &__overflow {
+    @include up('lg') {
+      overflow: hidden;
+      padding: rem(49) 0;
+    }
+  }
+
+  &__background {
+    position: absolute;
+    left: -22vw;
+    top: -250%;
+    transform: rotate(-11.2deg);
+
+    @include up('lg') {
+      left: rem(-210);
+    }
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__cards {
+    display: flex;
+    flex-direction: column;
+    gap: rem(24);
+
+    @include down('lg') {
+      max-width: rem(420);
+      margin: 0 auto;
+    }
+
+    @include up('lg') {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: rem(48);
+    }
+
+    .chiffre-card {
+      border-top-left-radius: rem(90);
+      border-bottom-right-radius: rem(90);
+      border-top-right-radius: rem(20);
+      border-bottom-left-radius: rem(20);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      &:first-of-type {
+        animation: scaleUpAndDown1 7.5s ease infinite forwards normal;
+      }
+
+      &:nth-child(2) {
+        animation: scaleUpAndDown2 7.5s ease infinite forwards normal;
+      }
+
+      &:last-child {
+        animation: scaleUpAndDown3 7.5s ease infinite forwards normal;
+      }
+
+      @include down('lg') {
+        transform-origin: top;
+        width: rem(260);
+        padding: rem(18) rem(24);
+
+        .chiffre-card__subtitle {
+          padding: 0 rem(16);
+        }
+
+        &:nth-child(1) {
+          margin: 0 auto;
+        }
+
+        .chiffre-card__title {
+          font-size: rem(40);
+        }
+
+        &:nth-child(3) {
+          align-self: flex-end;
+        }
+      }
+
+      @include up('lg') {
+        transform-origin: bottom;
+        padding: rem(30);
+        width: rem(226);
+        height: rem(226);
+
+        &:nth-child(3) {
+          transform-origin: top;
+        }
+
+        .chiffre-card__title {
+          font-size: rem(60);
+        }
+      }
+
+      @include up('wd') {
+        padding: rem(25);
+        width: rem(202);
+        height: rem(236);
+
+        .chiffre-card__title {
+          font-size: rem(60);
+        }
+      }
+
+      &__title {
+        text-align: center;
+        line-height: 100%;
+        font-family: get-font-stack('Sometimes-Times');
+        margin-bottom: rem(24);
+
+        @include up('lg') {
+          font-size: rem(100);
+        }
+
+        @include up('wd') {
+          font-size: rem(130);
+        }
+      }
+
+      &__subtitle {
+        text-align: center;
+        max-width: rem(209);
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @include up('lg') {
+        &:nth-child(2) {
+          align-self: flex-end;
+        }
+      }
+
+      &:nth-child(3) {
+        @include up('lg') {
+          margin: 0 auto;
+        }
+
+        border-top-left-radius: rem(20);
+        border-bottom-right-radius: rem(20);
+        border-top-right-radius: rem(90);
+        border-bottom-left-radius: rem(90);
+      }
+    }
+  }
+}
